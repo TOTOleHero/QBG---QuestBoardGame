@@ -1,0 +1,3 @@
+class TileFunction:
+	pass
+	
