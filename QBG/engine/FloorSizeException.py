@@ -1,0 +1,2 @@
+class FloorSizeException(Exception):
+    pass
