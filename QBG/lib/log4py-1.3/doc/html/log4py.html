@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+
+<META NAME="GENERATOR" CONTENT="pythondoc 0.7 (Sat Aug  9 16:08:18 2003)">
+
+<link rel="stylesheet" href="log4py.css" type="text/css">
+
+<title>Module log4py</title>
+</head>
+
+<body>
+<span CLASS="ClassHead">
+<table width="100%" bgcolor="#eeeeee">
+  <tr>
+    <td nowrap><a class="DocLink" HREF="index.html"><span CLASS="ClassName"><b>Table of contents</b></span></A></td>
+    <td>&nbsp;<b>|</b>&nbsp;</td>
+    <td nowrap><A class="DocLink" HREF="indices.html"><span CLASS="ClassName"><b>Index</b></span></A></td>
+    <td width="100%">&nbsp;</td>
+  </tr>
+</table>
+</span>
+
+<H1 CLASS="ModuleName">Module log4py</H1>
+<PRE><SPAN CLASS="ClassHead"><A CLASS="DocLink" HREF="log4py.FileAppender.html"><SPAN CLASS="PyKeyword">class</SPAN> <SPAN CLASS="ClassName">FileAppender</SPAN></A></SPAN>
+<SPAN CLASS="ClassHead"><A CLASS="DocLink" HREF="log4py.Logger.html"><SPAN CLASS="PyKeyword">class</SPAN> <SPAN CLASS="ClassName">Logger</SPAN></A></SPAN>
+<SPAN CLASS="FunctionHead"><SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">get_homedirectory</SPAN>()</SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">AQUA</SPAN> = <SPAN CLASS="VariableValue">36</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">BLACK</SPAN> = <SPAN CLASS="VariableValue">30</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">BLUE</SPAN> = <SPAN CLASS="VariableValue">34</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">dictionary</SPAN> <SPAN CLASS="VariableName">CONFIGURATION_FILES</SPAN> = <SPAN CLASS="VariableValue">{1: 'log4py.conf', 2: '$HOME/.log4py.conf', 3: '/etc/log4py.conf'}</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">FALSE</SPAN> = <SPAN CLASS="VariableValue">'FALSE'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">FMT_DEBUG</SPAN> = <SPAN CLASS="VariableValue">'%T [%D (%d)] %L %C [%F (%N)] %x%M'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">FMT_LONG</SPAN> = <SPAN CLASS="VariableValue">'%T %L %C [%F] %x%M'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">FMT_MEDIUM</SPAN> = <SPAN CLASS="VariableValue">'[ %C.%F ] %D: %M'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">FMT_SHORT</SPAN> = <SPAN CLASS="VariableValue">'%M'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">GREEN</SPAN> = <SPAN CLASS="VariableValue">32</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">LOGLEVEL_DEBUG</SPAN> = <SPAN CLASS="VariableValue">16</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">LOGLEVEL_ERROR</SPAN> = <SPAN CLASS="VariableValue">2</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">LOGLEVEL_NONE</SPAN> = <SPAN CLASS="VariableValue">1</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">LOGLEVEL_NORMAL</SPAN> = <SPAN CLASS="VariableValue">4</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">LOGLEVEL_VERBOSE</SPAN> = <SPAN CLASS="VariableValue">8</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">dictionary</SPAN> <SPAN CLASS="VariableName">LOG_COLORS</SPAN> = <SPAN CLASS="VariableValue">{1: [37, 30, 'FALSE'], 2: [37, 30, 'FALSE'], 4: [37, 30, 'TRUE'], 8: [37, 30, 'FALSE']}</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">dictionary</SPAN> <SPAN CLASS="VariableName">LOG_LEVELS</SPAN> = <SPAN CLASS="VariableValue">{'DEBUG': 16, 'ERROR': 2, 'NONE': 1, 'NORMAL': 4}</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">dictionary</SPAN> <SPAN CLASS="VariableName">LOG_MSG</SPAN> = <SPAN CLASS="VariableValue">{1: 'DEBUG', 2: 'WARNING', 4: 'ERROR', 8: 'INFO'}</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">MSG_DEBUG</SPAN> = <SPAN CLASS="VariableValue">1</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">MSG_ERROR</SPAN> = <SPAN CLASS="VariableValue">4</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">MSG_INFO</SPAN> = <SPAN CLASS="VariableValue">8</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">MSG_WARN</SPAN> = <SPAN CLASS="VariableValue">2</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">PURPLE</SPAN> = <SPAN CLASS="VariableValue">35</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">RED</SPAN> = <SPAN CLASS="VariableValue">31</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">ROTATE_DAILY</SPAN> = <SPAN CLASS="VariableValue">1</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">ROTATE_MONTHLY</SPAN> = <SPAN CLASS="VariableValue">3</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">ROTATE_NONE</SPAN> = <SPAN CLASS="VariableValue">0</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">ROTATE_WEEKLY</SPAN> = <SPAN CLASS="VariableValue">2</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">SECTION_DEFAULT</SPAN> = <SPAN CLASS="VariableValue">'Default'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">list</SPAN> <SPAN CLASS="VariableName">SPECIAL_TARGETS</SPAN> = <SPAN CLASS="VariableValue">['MySQL', 'Postgres', 'Syslog', 'sys.stdout', 'sys.stderr', 'stdout', ...]</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">TARGET_MYSQL</SPAN> = <SPAN CLASS="VariableValue">'MySQL'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">TARGET_POSTGRES</SPAN> = <SPAN CLASS="VariableValue">'Postgres'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">TARGET_SYSLOG</SPAN> = <SPAN CLASS="VariableValue">'Syslog'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">TARGET_SYS_STDERR</SPAN> = <SPAN CLASS="VariableValue">'sys.stderr'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">TARGET_SYS_STDERR_ALIAS</SPAN> = <SPAN CLASS="VariableValue">'stderr'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">TARGET_SYS_STDOUT</SPAN> = <SPAN CLASS="VariableValue">'sys.stdout'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">TARGET_SYS_STDOUT_ALIAS</SPAN> = <SPAN CLASS="VariableValue">'stdout'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">TRUE</SPAN> = <SPAN CLASS="VariableValue">'TRUE'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">WHITE</SPAN> = <SPAN CLASS="VariableValue">37</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">int</SPAN> <SPAN CLASS="VariableName">YELLOW</SPAN> = <SPAN CLASS="VariableValue">33</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">__file__</SPAN> = <SPAN CLASS="VariableValue">'/home/preisl/Software/Log4Py/log4py.py'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">mysql_available</SPAN> = <SPAN CLASS="VariableValue">'FALSE'</SPAN></SPAN>
+<SPAN CLASS="PyKeyword">alias</SPAN> <SPAN CLASS="AliasName">ClassType</SPAN> = <SPAN CLASS="AliasFor">class (type type)</SPAN>
+<SPAN CLASS="PyKeyword">alias</SPAN> <SPAN CLASS="AliasName">FileType</SPAN> = <SPAN CLASS="AliasFor">file (type type)</SPAN>
+<SPAN CLASS="PyKeyword">alias</SPAN> <SPAN CLASS="AliasName">InstanceType</SPAN> = <SPAN CLASS="AliasFor">instance (type type)</SPAN>
+<SPAN CLASS="PyKeyword">alias</SPAN> <SPAN CLASS="AliasName">StringType</SPAN> = <SPAN CLASS="AliasFor">string (type type)</SPAN>
+<SPAN CLASS="PyKeyword">alias</SPAN> <SPAN CLASS="AliasName">TupleType</SPAN> = <SPAN CLASS="AliasFor">tuple (type type)</SPAN>
+</PRE><H2>Description</H2><P>
+Python logging module - Version 1.3</P>
+
+<H3>Loglevels:</H3>
+    LOGLEVEL_NONE, LOGLEVEL_ERROR, LOGLEVEL_NORMAL, LOGLEVEL_VERBOSE, LOGLEVEL_DEBUG
+<H3>Format-Parameters:</H3>
+
+<DL>
+
+<DT>
+%C
+<DD>The name of the current class.
+<DT>
+%D
+<DD>Program duration since program start.
+<DT>
+%d
+<DD>Program duration for the last step (last output).
+<DT>
+%F
+<DD>The name of the current function.
+<DT>
+%f
+<DD>Current filename
+<DT>
+%L
+<DD>Log type (Error, Warning, Debug or Info)
+<DT>
+%M
+<DD>The actual message.
+<DT>
+%N
+<DD>The current line number.
+<DT>
+%T
+<DD>Current time (human readable).
+<DT>
+%t
+<DD>Current time (machine readable)
+<DT>
+%U
+<DD>Current fully qualified module/file.
+<DT>
+%u
+<DD>Current module/file.
+<DT>
+%x
+<DD>NDC (nested diagnostic contexts).
+</DL>
+
+<H3>Pre-defined Formats:</H3>
+
+<DL>
+
+<DT>
+FMT_SHORT
+<DD>%M
+<DT>
+FMT_MEDIUM
+<DD>[ %C.%F ] %D: %M
+<DT>
+FMT_LONG
+<DD>%T %L %C [%F] %x%M
+<DT>
+FMT_DEBUG
+<DD>%T [%D (%d)] %L %C [%F (%N)] %x%M
+</DL>
+
+
+<HR noshade>
+
+<TABLE ALIGN="LEFT">
+  <TR>
+    <TD>
+      <A HREF="http://validator.w3.org/check/referer" TARGET="validate"><IMG BORDER=0 SRC="http://validator.w3.org/images/vh40.gif" ALT="Valid HTML 4.0!" HEIGHT=31 WIDTH=88></A>
+      <A HREF="http://www.w3.org/Style/CSS/Buttons"><IMG ALT="Made with CSS" BORDER=0 WIDTH=88 HEIGHT=31 SRC="http://www.w3.org/Style/CSS/Buttons/mwcos"></A>
+   </TD>
+   <TD STYLE="padding-left: 10">
+     <SPAN CLASS="AUTHOR">Martin Preishuber, <a href="mailto:Martin.Preishuber@eclipt.at">Martin.Preishuber@eclipt.at</a></SPAN><BR>
+     <SPAN CLASS="VERSION">Version 1.3</SPAN>
+  </TD>
+</TABLE>
+
+</body>
+</html>

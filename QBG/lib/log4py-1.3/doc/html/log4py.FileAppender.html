@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+
+<META NAME="GENERATOR" CONTENT="pythondoc 0.7 (Sat Aug  9 16:08:18 2003)">
+
+<link rel="stylesheet" href="log4py.css" type="text/css">
+
+<title>Class FileAppender</title>
+</head>
+
+<body>
+<span CLASS="ClassHead">
+<table width="100%" bgcolor="#eeeeee">
+  <tr>
+    <td nowrap><a class="DocLink" HREF="index.html"><span CLASS="ClassName"><b>Table of contents</b></span></A></td>
+    <td>&nbsp;<b>|</b>&nbsp;</td>
+    <td nowrap><A class="DocLink" HREF="indices.html"><span CLASS="ClassName"><b>Index</b></span></A></td>
+    <td width="100%">&nbsp;</td>
+  </tr>
+</table>
+</span>
+
+<H1 CLASS="ClassName">class FileAppender</H1>
+<P CLASS="DeclaredIn">Declared in module <A HREF="log4py.html">log4py</A></P>
+
+
+
+<H2>Synopsis</H2>
+<PRE CLASS="ClassDeclaration">
+<SPAN CLASS="PyKeyword">class</SPAN> <SPAN CLASS="ClassName">FileAppender</SPAN>:
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.FileAppender.__FileAppender_date_string</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">modification_time</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Returns a new filename for the rotated file with the appropriate time included. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.FileAppender.__FileAppender_rotate</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">modification_time</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Check, wether the file has to be rotated yet or not. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.FileAppender.__init__</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">filename</SPAN>, <SPAN CLASS="Argument">rotation=0</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Class initalization &amp; customization. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.FileAppender.get_rotation</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Returns the current rotation setting. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.FileAppender.set_rotation</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">rotation</SPAN>)<SPAN CLASS="OneLiner"> #  Set the file rotation mode to one of ROTATE_NONE, ROTATE_DAILY, ROTATE_WEEKLY, ROTATE_MONTHLY </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.FileAppender.write</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">text</SPAN>)<SPAN CLASS="OneLiner"> #  Write some text to the file appender. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.FileAppender.writeline</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">text</SPAN>)<SPAN CLASS="OneLiner"> #  Write some text including newline to the file appender. </SPAN>
+
+</PRE>
+
+<HR noshade>
+
+<TABLE ALIGN="LEFT">
+  <TR>
+    <TD>
+      <A HREF="http://validator.w3.org/check/referer" TARGET="validate"><IMG BORDER=0 SRC="http://validator.w3.org/images/vh40.gif" ALT="Valid HTML 4.0!" HEIGHT=31 WIDTH=88></A>
+      <A HREF="http://www.w3.org/Style/CSS/Buttons"><IMG ALT="Made with CSS" BORDER=0 WIDTH=88 HEIGHT=31 SRC="http://www.w3.org/Style/CSS/Buttons/mwcos"></A>
+   </TD>
+   <TD STYLE="padding-left: 10">
+     <SPAN CLASS="AUTHOR">Martin Preishuber, <a href="mailto:Martin.Preishuber@eclipt.at">Martin.Preishuber@eclipt.at</a></SPAN><BR>
+     <SPAN CLASS="VERSION">Version 1.3</SPAN>
+  </TD>
+</TABLE>
+
+</body>
+</html>

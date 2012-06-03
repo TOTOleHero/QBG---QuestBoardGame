@@ -1,0 +1,87 @@
+Version 1.3
+
+    - FileAppender class added (generic file rotation)
+    - log4py uses FileAppender class for logfiles (enables log file rotation)
+    - support for win32 platform
+    - $HOME is replaced correctly on win32 platform
+
+Version 1.2.1
+
+    - syslog support is only enabled on POSIX operating systems
+
+Version 1.2
+
+    - syslog support added (very simple by now)
+    - bug fixed with sys.stderr (thanks Alain)
+    - get_targets method added
+    - environment variables in filename targets get expanded now
+    - added %f as format parameter, which is replaced by the current filename
+      (thanks Rémi)
+    - targets which support the write method work now (thanks again Rémi)
+    - Changed to order in info/debug/error message so _collate_messages
+      will only be called if required
+
+Version 1.1.1
+
+    - new Format parameter %t added (Thanks Emily)
+    - possibility to log exceptions added (Thanks Rico)
+    - possibility to log filenames added (Thanks again Rico)
+
+Version 1.1
+
+    - README updated
+    - MySQL target added (thanks Weiyi Yang)
+
+Version 1.0.1
+
+    - Loglevel LOGLEVEL_ERROR added (to show only error messages)
+
+Version 1.0
+
+    - minor bug fixes
+
+Version 0.7.1
+
+    - HTML documentation added (generated from doc strings)
+
+Version 0.7:
+
+    - changed the class name from Category to Logger (log4j 1.2 conform)
+    - bug fixes with environment variables on windows systems (thanks Colin)
+    - fixed some bug with escaping \ (thanks again Colin)
+    - the configuration file may include settings for various instances now.
+    - multiple target support added.
+
+Version 0.6:
+
+    - nested diagnostic contexts added (Bruce)
+    - application loglevels added to config files (Bruce)
+
+Version 0.5:
+
+    - included a patch of Bruce Kroeze (bruce@zefamily.org), which improves
+      the performance by reading the config file only once and makes log4py
+      safe for deepcopying.
+
+Version 0.4:
+
+    - license change from GPL to MIT
+    - the usual minor bugfixes
+
+Version 0.3:
+
+    - added format parameter %d (duration since last message)
+    - log4py is used for debugging (if available)
+    - some minor bug fixes
+
+Version 0.2:
+
+    - support for configuration files added
+    - support for user configurable timeformats added
+    - removed some parameters from the class initialization
+    - changed the default target to None (instead of sys.stdout) to make
+      log4py deepcopyable
+
+Version 0.1:
+
+    - initial release

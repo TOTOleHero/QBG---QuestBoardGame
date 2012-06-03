@@ -1,0 +1,17 @@
+To use mysql as logging database, please perform the following steps:
+
+1. Create a database and table:
+
+       "mysql -u root -p < mysql.sql"
+       
+   This will create a new database "syslog" and a table "logs"
+
+2. Grant access to the log table to one or more users:
+
+        "mysql -u root -p"
+        "use syslog;"
+        "grant insert,select,update,delete on syslog.logs to log4py@localhost;"
+
+3. If log4py@localhost is a new user, don't forget to set a password:
+
+        "mysqladmin -u log4py -p password mysecretpwd"

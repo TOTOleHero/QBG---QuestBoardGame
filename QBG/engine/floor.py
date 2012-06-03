@@ -1,6 +1,7 @@
-from QBG.engine.FloorSizeException import FloorSizeException
+class FloorSizeException(Exception):
+    pass
 
-class Floor:
+class Floor(object):
     
     
     '''
@@ -34,6 +35,7 @@ class Floor:
         if totalTiles != len(self.tiles) :
             raise FloorSizeException
         
+
         
          
         

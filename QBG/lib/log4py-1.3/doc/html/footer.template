@@ -1,0 +1,14 @@
+
+<HR noshade>
+
+<TABLE ALIGN="LEFT">
+  <TR>
+    <TD>
+      <A HREF="http://validator.w3.org/check/referer" TARGET="validate"><IMG BORDER=0 SRC="http://validator.w3.org/images/vh40.gif" ALT="Valid HTML 4.0!" HEIGHT=31 WIDTH=88></A>
+      <A HREF="http://www.w3.org/Style/CSS/Buttons"><IMG ALT="Made with CSS" BORDER=0 WIDTH=88 HEIGHT=31 SRC="http://www.w3.org/Style/CSS/Buttons/mwcos"></A>
+   </TD>
+   <TD STYLE="padding-left: 10">
+     <SPAN CLASS="AUTHOR">Martin Preishuber, <a href="mailto:Martin.Preishuber@eclipt.at">Martin.Preishuber@eclipt.at</a></SPAN><BR>
+     <SPAN CLASS="VERSION">Version 1.3</SPAN>
+  </TD>
+</TABLE>

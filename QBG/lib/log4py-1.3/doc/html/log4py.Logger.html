@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+
+<META NAME="GENERATOR" CONTENT="pythondoc 0.7 (Sat Aug  9 16:08:18 2003)">
+
+<link rel="stylesheet" href="log4py.css" type="text/css">
+
+<title>Class Logger</title>
+</head>
+
+<body>
+<span CLASS="ClassHead">
+<table width="100%" bgcolor="#eeeeee">
+  <tr>
+    <td nowrap><a class="DocLink" HREF="index.html"><span CLASS="ClassName"><b>Table of contents</b></span></A></td>
+    <td>&nbsp;<b>|</b>&nbsp;</td>
+    <td nowrap><A class="DocLink" HREF="indices.html"><span CLASS="ClassName"><b>Index</b></span></A></td>
+    <td width="100%">&nbsp;</td>
+  </tr>
+</table>
+</span>
+
+<H1 CLASS="ClassName">class Logger</H1>
+<P CLASS="DeclaredIn">Declared in module <A HREF="log4py.html">log4py</A></P>
+
+
+
+<H2>Synopsis</H2>
+<PRE CLASS="ClassDeclaration">
+<SPAN CLASS="PyKeyword">class</SPAN> <SPAN CLASS="ClassName">Logger</SPAN>:
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_ansi</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">text</SPAN>, <SPAN CLASS="Argument">messagesource</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Converts plain text to ansi text. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_appendconfigfiles</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">filenames</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Append a filename to the list of configuration files. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_cache_options</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Read and cache debug levels for categories from config file. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_collate_messages</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">messages</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Create a single string from a number of messages. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_find_config</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Search for configuration files. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_get_ndc</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Returns the NDC (nested diagnostic context) joined with single-spaces. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_parse_options</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">section='Default'</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Parse main options from config file. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_set_instance_options</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">parser</SPAN>, <SPAN CLASS="Argument">section</SPAN>, <SPAN CLASS="Argument">instance</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Set the options for a given instance from the parser section </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_setdefaults</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Set default values for internal variables. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_showmessage</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">message</SPAN>, <SPAN CLASS="Argument">messagesource</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Writes a message to all targets set. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__Logger_tracestack</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Analyze traceback stack and set linenumber and functionname. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.__init__</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">useconfigfiles='TRUE'</SPAN>, <SPAN CLASS="Argument">customconfigfiles=None</SPAN>)<SPAN CLASS="OneLiner"> # <STRONG>(private)</STRONG> Class initalization &amp; customization. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.add_target</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">target</SPAN>, <SPAN CLASS="Argument">*args</SPAN>)<SPAN CLASS="OneLiner"> #  Add a target to the logger targets. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.clear_ndc</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Clears all NDC messages. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.debug</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">*messages</SPAN>)<SPAN CLASS="OneLiner"> #  Write a debug message. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.error</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">*messages</SPAN>)<SPAN CLASS="OneLiner"> #  Write a error message. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.get_formatstring</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Returns the current format string. </SPAN>
+    <A CLASS="DocLink" HREF="#log4py.Logger.get_instance"><SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.get_instance</SPAN></A>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">classid='Main'</SPAN>, <SPAN CLASS="Argument">use_cache='TRUE'</SPAN>)<SPAN CLASS="OneLiner"> #  Either get the cached logger instance or create a new one</SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.get_loglevel</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Returns the current loglevel. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.get_root</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Provides a way to change the base logger object's properties. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.get_rotation</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Returns the current rotation setting. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.get_targets</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Returns all defined targets. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.get_time_format</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Returns the current time format. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.get_use_ansi_codes</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Returns, wether ansi codes are being used or not. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.info</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">*messages</SPAN>)<SPAN CLASS="OneLiner"> #  Write a info message. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.pop</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Remove the topmost trace message. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.push</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">message</SPAN>)<SPAN CLASS="OneLiner"> #  Add a trace message. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.remove_all_targets</SPAN>(<SPAN CLASS="Argument">self</SPAN>)<SPAN CLASS="OneLiner"> #  Remove all targets from the logger targets. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.remove_target</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">target</SPAN>)<SPAN CLASS="OneLiner"> #  Remove a target from the logger targets. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.set_formatstring</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">formatstring</SPAN>)<SPAN CLASS="OneLiner"> #  Set a format string. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.set_loglevel</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">loglevel</SPAN>)<SPAN CLASS="OneLiner"> #  Set the loglevel for the current instance. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.set_rotation</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">rotation</SPAN>)<SPAN CLASS="OneLiner"> #  Set the file rotation mode to one of ROTATE_NONE, ROTATE_DAILY, ROTATE_WEEKLY, ROTATE_MONTHLY </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.set_target</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">target</SPAN>)<SPAN CLASS="OneLiner"> #  Set a single target. </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.set_time_format</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">timeformat</SPAN>)<SPAN CLASS="OneLiner"> #  Set the time format (default: loaded from the system locale). </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.set_use_ansi_codes</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">useansicodes</SPAN>)<SPAN CLASS="OneLiner"> #  Use ansi codes for output to the console (TRUE or FALSE). </SPAN>
+    <SPAN CLASS="PyKeyword">def</SPAN> <SPAN CLASS="FunctionName">log4py.Logger.warn</SPAN>(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">*messages</SPAN>)<SPAN CLASS="OneLiner"> #  Write a warning message. </SPAN>
+
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">dictionary</SPAN> <SPAN CLASS="VariableName">cache</SPAN> = <SPAN CLASS="VariableValue">{}</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">list</SPAN> <SPAN CLASS="VariableName">configfiles</SPAN> = <SPAN CLASS="VariableValue">[]</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">string</SPAN> <SPAN CLASS="VariableName">hostname</SPAN> = <SPAN CLASS="VariableValue">'travelmate'</SPAN></SPAN>
+<SPAN CLASS="VariableHead"><SPAN CLASS="VariableType">None</SPAN> <SPAN CLASS="VariableName">instance</SPAN> = <SPAN CLASS="VariableValue">None</SPAN></SPAN>
+</PRE><H2 ID="log4py.Logger.get_instance" CLASS="Method">log4py.Logger.get_instance(<SPAN CLASS="Argument">self</SPAN>, <SPAN CLASS="Argument">classid='Main'</SPAN>, <SPAN CLASS="Argument">use_cache='TRUE'</SPAN>)</H2>
+<P> Either get the cached logger instance or create a new one</P>
+
+<P>
+Note that this is safe, even if you have your target set to sys.stdout
+or sys.stderr
+</P>
+
+
+<HR noshade>
+
+<TABLE ALIGN="LEFT">
+  <TR>
+    <TD>
+      <A HREF="http://validator.w3.org/check/referer" TARGET="validate"><IMG BORDER=0 SRC="http://validator.w3.org/images/vh40.gif" ALT="Valid HTML 4.0!" HEIGHT=31 WIDTH=88></A>
+      <A HREF="http://www.w3.org/Style/CSS/Buttons"><IMG ALT="Made with CSS" BORDER=0 WIDTH=88 HEIGHT=31 SRC="http://www.w3.org/Style/CSS/Buttons/mwcos"></A>
+   </TD>
+   <TD STYLE="padding-left: 10">
+     <SPAN CLASS="AUTHOR">Martin Preishuber, <a href="mailto:Martin.Preishuber@eclipt.at">Martin.Preishuber@eclipt.at</a></SPAN><BR>
+     <SPAN CLASS="VERSION">Version 1.3</SPAN>
+  </TD>
+</TABLE>
+
+</body>
+</html>
