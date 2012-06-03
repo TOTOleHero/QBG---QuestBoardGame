@@ -1,9 +1,13 @@
 {
-	name: "tjunction",
-	definition : [
+	"name":"Tjunction"
+	,"definition" : [
 	 [ ["IO"], ["N"], ["N"],  ["N"],  ["N"], ["IO"] ]
+	
 	,[ ["IO"], ["N"], ["N"],  ["N"],  ["N"], ["IO"] ]
+	
 	,[ ["B"],  ["B"], ["N"],  ["N"],  ["B"], ["B"]  ]
+	
 	,[ ["B"],  ["B"], ["IO"], ["IO"], ["B"], ["B"]  ]
-	];
+	
+	]
 }
