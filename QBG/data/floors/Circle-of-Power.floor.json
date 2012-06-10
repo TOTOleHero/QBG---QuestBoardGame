@@ -1,0 +1,14 @@
+{
+	"name":"Circle of Power"
+    ,"subType" : "dungeon-room"
+	,"unique" : true
+	,"definition" : [
+	 [ ["D"],["IO"], ["IO"] ,  ["D"]]
+	
+	,[ ["D"], ["D"],  ["D"],  ["D"] ]
+	
+	,[ ["D"],  ["D"],  ["D"] ,  ["D"] ]
+	
+	,[ ["D"],["IO"],  ["IO"] ,  ["D"] ]
+	]
+}

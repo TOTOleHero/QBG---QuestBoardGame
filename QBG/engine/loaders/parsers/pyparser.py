@@ -1,9 +1,7 @@
 from parser import Parser
-import json
 import re
-import copy
 
-class JsonParser(Parser):
+class PyParser(Parser):
     
     def __init__(self,fileName):
         Parser.__init__(self,fileName)
@@ -12,11 +10,14 @@ class JsonParser(Parser):
         
         fileReader = open(self.fileName)
         
-        dictData = json.load(fileReader)
+        fileContent = fileReader.read()
+        
+        self.log.debug(fileContent)
+        
+        myDict = eval(fileContent) 
+        myDict['objectType'] = self.extractTypeFromFilename(self.fileName) 
          
-        dictData['objectType'] = self.extractTypeFromFilename(self.fileName) 
-
-        newObject.setDict(dictData)
+        newObject.setDict(myDict)
          
         return newObject  
 
@@ -27,6 +28,8 @@ class JsonParser(Parser):
         
     
 class JsonDictContainer(object):
+    
+    dictData = None
     
     def setDict(self,dictData):
         

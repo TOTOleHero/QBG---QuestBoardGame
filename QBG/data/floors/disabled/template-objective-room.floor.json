@@ -1,0 +1,20 @@
+{
+	"name":"Template objective room"
+    ,"subType" : "objective-room"
+    ,"unique" : true
+	,"definition" : [
+	 [  ["D"],["IO"],  ["IO"],["D"] ]
+	
+	,[ ["D"],  ["D"],["D"],  ["D"] ]
+    
+    ,[ ["D"],  ["D"],["D"],  ["D"]  ]
+    ,[ ["D"],  ["D"],["D"],  ["D"] ]
+    
+    ,[ ["D"],  ["D"],["D"],  ["D"]  ]
+    ,[ ["D"],  ["D"],["D"],  ["D"] ]
+    
+    ,[ ["D"],  ["D"],["D"],  ["D"]  ]
+    
+	,[ ["D"],["IO"],  ["IO"],["D"]   ]
+	]
+}
