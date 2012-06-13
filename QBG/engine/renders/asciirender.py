@@ -1,17 +1,32 @@
 from render import Render
+from log4py import Logger
 
 class AsciiRender(Render):
     pass
 
     def __init__(self):
-        pass
+        self.log = Logger().get_instance(self.__class__.__name__)
+        
     
     def renderTabletop(self,tableTop):
         asciiMap = ''
-        for i in range(0,tableTop.globalWidth):
-            for j in range(0,tableTop.globalHeight):
-                asciiMap += 'O'
+        index=0
+        self.log.debug('Tabletop size x:'+str(tableTop.globalWidth)+'  y:'+str(tableTop.globalHeight))
+        
+        for i in range(0,tableTop.globalHeight):
+            for j in range(0,tableTop.globalWidth):
+                tile = tableTop.globalTiles[index]
+                asciiMap += self.getImageForTile(tile)
+                index +=1
             asciiMap += '\n'
         print asciiMap
             
         pass
+    
+    
+    def getImageForTile(self,tile):
+        if tile.hasFunction('IO'):
+            return '[D]'
+        if tile.hasFunction('D'):
+            return '[ ]'
+        return '   ';

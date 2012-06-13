@@ -37,17 +37,17 @@ class Engine(object):
     def render(self):
         self.tableTop.addFloor(self.generateDongeonArray[0])
         self.tableTop.addFloor(self.generateDongeonArray[1])
+        #self.tableTop.addFloor(self.generateDongeonArray[2])
         self.renderObject.renderTabletop(self.tableTop)
         
     def generateDongeon(self):
         
-        for index,value in self.donjonSubTypeCount.iteritems():
+        for objectType,value in self.donjonSubTypeCount.iteritems():
             for i in range(0,value):
-                self.generateDongeonArray.append(self.takeOneRandomFloorOfType(index,value - i))
+                self.generateDongeonArray.append(self.takeOneRandomFloorOfType(objectType,value - i))
         
         random.shuffle(self.generateDongeonArray)
         self.pushObjectiveRoomToDeep(self.generateDongeonArray)
-        
         
         
     def takeOneRandomFloorOfType(self,subType,countAgain):
@@ -63,7 +63,7 @@ class Engine(object):
             tempArray.remove(uniqueFloor)
             return uniqueFloor
         else:
-            return copy.copy(tempArray[0])
+            return copy.deepcopy(tempArray[0])
         
     def pushObjectiveRoomToDeep(self,generateDongeon):
         for floor in generateDongeon:

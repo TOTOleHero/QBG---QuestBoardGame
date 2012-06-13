@@ -58,11 +58,11 @@ class Floor(JsonDictContainer):
         newTile = Tile()
         newTile.floor = self
         newTile.setFunctions(self.tileFunctionLoader.getTileFunctionFromDefinition(tileDefinition))
-        self.log.debug(self.name +' have ' +str(len(self.tiles))+ ' tiles')
         self.tiles.append(newTile)
+        self.log.debug(self.name +' have ' +str(len(self.tiles))+ ' tiles')
         
     def addLine(self,lineDefinition):
-        self.log.debug('tiles definition elements : ' + str(len(lineDefinition)))
+        self.log.debug('tiles definition elements for '+self.name+' : ' + str(len(lineDefinition)))
         for tileDefinition in lineDefinition:
             self.addTile(tileDefinition)
             if self.tilesHeight == None:
@@ -93,74 +93,103 @@ class Floor(JsonDictContainer):
             self.createConnector()
         
     def createConnector(self):
+        self.connectors = {}
+        
         io1 = False
-        io2 = False        
+        io2 = False
+        checkNext = False        
         #north detection        
         for i in range(0,self.tilesWidth):
+                #self.log.debug('north check tile index : '+str(i))    
                 detectTile = self.tiles[i]
-                if detectTile.hasFunction('IO'):
-                    if not io1:
-                        io1 = True
-                    if io1:
-                        io2 = True
-                    if io1 and io2:
-                        raise Exception('more than one IO for north side')
+                if detectTile.hasFunction('IO') and not io1:
+                    io1 = True
+                    checkNext = True
+                elif detectTile.hasFunction('IO') and io1 and checkNext:
+                    io2 = True
+                else:
+                    io1 = False
+                    io2 = False
+                    checkNext = False 
+                    
         if io1 and io2:
             self.connectors['north'] = True
             
         
         io1 = False
-        io2 = False        
+        io2 = False 
+        checkNext = False        
         #south detection        
         for i in range(0,self.tilesWidth):
-                detectTile = self.tiles[i+self.tilesHeight]
-                if detectTile.hasFunction('IO'):
-                    if not io1:
-                        io1 = True
-                    if io1:
-                        io2 = True
-                    if io1 and io2:
-                        raise Exception('more than one IO for north side')
+                #self.log.debug('south check tile index : '+str(i+(self.tilesHeight*self.tilesWidth)-self.tilesWidth)) 
+                detectTile = self.tiles[i+(self.tilesHeight*self.tilesWidth)-self.tilesWidth]
+
+                if detectTile.hasFunction('IO') and not io1:
+                    io1 = True
+                    checkNext = True
+                elif detectTile.hasFunction('IO') and io1 and checkNext:
+                    io2 = True
+                else:
+                    io1 = False
+                    io2 = False
+                    checkNext = False 
+
         if io1 and io2:
             self.connectors['south'] = True    
             
         
         io1 = False
-        io2 = False        
+        io2 = False  
+        checkNext = False       
         #west detection        
         for i in range(0,self.tilesHeight):
+                #self.log.debug('west check tile index : '+str(i * self.tilesWidth)) 
                 detectTile = self.tiles[i * self.tilesWidth]
-                if detectTile.hasFunction('IO'):
-                    if not io1:
-                        io1 = True
-                    if io1:
-                        io2 = True
-                    if io1 and io2:
-                        raise Exception('more than one IO for west side')
+                if detectTile.hasFunction('IO') and not io1:
+                    io1 = True
+                    checkNext = True
+                elif detectTile.hasFunction('IO') and io1 and checkNext:
+                    io2 = True
+                else:
+                    io1 = False
+                    io2 = False
+                    checkNext = False 
+                    
         if io1 and io2:
             self.connectors['west'] = True
-                     
+                         
         io1 = False
-        io2 = False        
+        io2 = False  
+        checkNext = False       
         #east detection        
         for i in range(0,self.tilesHeight):
-                detectTile = self.tiles[(i * self.tilesWidth) + self.tilesWidth]
-                if detectTile.hasFunction('IO'):
-                    if not io1:
-                        io1 = True
-                    if io1:
-                        io2 = True
-                    if io1 and io2:
-                        raise Exception('more than one IO for east side')
+                self.log.debug('east check tile index : '+str((i * self.tilesWidth) + self.tilesWidth-1)) 
+                detectTile = self.tiles[(i * self.tilesWidth) + self.tilesWidth-1]
+                if detectTile.hasFunction('IO') and not io1:
+                    io1 = True
+                    checkNext = True
+                elif detectTile.hasFunction('IO') and io1 and checkNext:
+                    io2 = True
+                else:
+                    io1 = False
+                    io2 = False
+                    checkNext = False 
+
         if io1 and io2:
             self.connectors['east'] = True
         
-        
             
     def lockConnector(self,direction):
+        self.log.debug('available connectors '+str(self.getFreeConnectors()))    
+        if not direction in self.connectors:
+            raise Exception('Connector '+direction + ' not exist')
         if not self.connectors[direction]:
             raise Exception('Connector '+direction + ' already connected')
-        self.connectors[direction] = False     
+        self.connectors[direction] = False
+        self.log.debug('lock direction '+direction+' rest : ' +str(self.getFreeConnectors()))     
+    
+    def lockCompatibleConnector(self,direction):
+        self.lockConnector(self.getCompatibleDirection(direction))
     
     def hasFreeConnector(self,direction = None):
         if direction == None:
@@ -177,6 +206,7 @@ class Floor(JsonDictContainer):
     
     
     def getCompatibleDirection(self,direction):
+        self.log.debug('Compatible connector is '+self.connectorCompatibility[direction])
         return self.connectorCompatibility[direction]    
                  
     def getFreeConnectors(self):
@@ -184,12 +214,18 @@ class Floor(JsonDictContainer):
         for connector,free in self.connectors.items():
             if free:
                 freeConnectors.append(connector) 
+        self.log.debug(self.name + ' has free connectors :'+str(freeConnectors))
         return freeConnectors
     
+    def getOneFreeConnector(self):
+        return self.getFreeConnectors()[0]
+    
+    
     def rotateForCompatibleConnector(self,connector):
-        
         for i in range(4):
+            self.log.debug('free connectors '+str(self.getFreeConnectors())+ ',Rotate '+str(i)+' times')
             if not self.hasFreeConnector(self.getCompatibleDirection(connector)):
+                self.log.debug('not compatible => rotate')
                 self.rotate()
             else:
                 return True
@@ -197,12 +233,13 @@ class Floor(JsonDictContainer):
         return False                   
     
     def rotate(self):
+        self.log.debug('Rotate '+self.name+' left')
         newTiles = []
         j = 0
         for i in range(0,self.tilesWidth):
             for j in range(0,self.tilesHeight):
                 newTiles.append( self.tiles[i + (j * self.tilesWidth)])
-        print newTiles
+        self.createConnector()
            
             
                   

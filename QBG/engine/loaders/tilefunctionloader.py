@@ -31,12 +31,16 @@ class TileFunctionLoader(Loader):
             if parser != None:
                 self.data.append(parser.loadInClass(TileFunction()))
     
-    def getTileFunctionFromDefinition(self,code):  
-        self.log.debug('Tiles code '+str(code))
-        for tilefunction in self.data:
-            if tilefunction.code == code:
-                return copy.copy(tilefunction)
+    def getTileFunctionFromDefinition(self,codes):  
+        self.log.debug('Tiles code '+str(codes))
+        
+        returnFunctions = []
+        
+        for code in codes:
+            for tilefunction in self.data:
+                if tilefunction.code == code:
+                    returnFunctions.append( copy.deepcopy(tilefunction))
             
-        return None
+        return returnFunctions
               
              

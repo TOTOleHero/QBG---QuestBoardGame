@@ -5,7 +5,7 @@ from engine.loaders.floorloader import FloorLoader
 from engine.loaders.tileloader import TileLoader
 from engine.loaders.tilefunctionloader import TileFunctionLoader
 from engine.renders.asciirender import AsciiRender
-
+import copy
 
 from log4py import Logger
 
@@ -24,15 +24,22 @@ e.addLoader(floorLoader)
 
 e.load()
 for floors in e.data['floor'].itervalues():
+    index=0
     for floor in floors:
-        print 'check '+floor.name
+        print 'check '+str(index)+':'+floor.name
         floor.checkFloorSizes()
+        index += 1
         
 e.authorizeDungeonSubTypeCount('corridor',12)
 e.authorizeDungeonSubTypeCount('dungeon-room',4)
 e.authorizeDungeonSubTypeCount('objective-room',1)
 
-e.generateDongeon()
+#e.generateDongeon()
+e.generateDongeonArray.append(copy.deepcopy(e.data['floor']['corridor'][0]))
+e.generateDongeonArray.append(copy.deepcopy(e.data['floor']['corridor'][0]))
+e.generateDongeonArray.append(copy.deepcopy(e.data['floor']['corridor'][1]))
+
+print(e.generateDongeonArray)
 
 e.setRender(AsciiRender())
 

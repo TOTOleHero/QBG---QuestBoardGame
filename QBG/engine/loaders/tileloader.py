@@ -35,7 +35,7 @@ class TileLoader(Loader):
         self.log.debug('Tiles code '+str(code))
         for tile in self.data:
             if tile.code == code:
-                return copy.copy(tile)
+                return copy.deepcopy(tile)
             
         return None
               
