@@ -31,15 +31,21 @@ class TileFunctionLoader(Loader):
             if parser != None:
                 self.data.append(parser.loadInClass(TileFunction()))
     
+    def getTileFunctionFromCode(self,code):  
+        for tilefunction in self.data:
+                if tilefunction.code == code:
+                    return copy.deepcopy(tilefunction)
+        return None
+    
     def getTileFunctionFromDefinition(self,codes):  
         self.log.debug('Tiles code '+str(codes))
         
         returnFunctions = []
         
         for code in codes:
-            for tilefunction in self.data:
-                if tilefunction.code == code:
-                    returnFunctions.append( copy.deepcopy(tilefunction))
+            function = self.getTileFunctionFromCode(code)
+            if function != None:
+                returnFunctions.append(function)        
             
         return returnFunctions
               

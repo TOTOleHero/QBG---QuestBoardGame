@@ -9,6 +9,9 @@ class Tile(JsonDictContainer):
         self.floor = None
         self.functions = []
    
+    def addFunction(self,function):
+        self.functions.append(function)
+        
     def setFunctions(self,functions):
         self.functions = functions
         self.log.debug(str(self.functions))

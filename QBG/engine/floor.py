@@ -100,20 +100,21 @@ class Floor(JsonDictContainer):
         checkNext = False        
         #north detection        
         for i in range(0,self.tilesWidth):
-                #self.log.debug('north check tile index : '+str(i))    
-                detectTile = self.tiles[i]
-                if detectTile.hasFunction('IO') and not io1:
-                    io1 = True
-                    checkNext = True
-                elif detectTile.hasFunction('IO') and io1 and checkNext:
-                    io2 = True
-                else:
-                    io1 = False
-                    io2 = False
-                    checkNext = False 
+            self.log.debug('north check tile index : '+str(i))    
+            detectTile = self.tiles[i]
+            if detectTile.hasFunction('IO') and not io1:
+                io1 = True
+                checkNext = True
+            elif detectTile.hasFunction('IO') and io1 and checkNext:
+                io2 = True
+            else:
+                io1 = False
+                io2 = False
+                checkNext = False 
                     
-        if io1 and io2:
-            self.connectors['north'] = True
+            if io1 and io2:
+                self.connectors['north'] = True
+                self.log.debug('north detected')
             
         
         io1 = False
@@ -121,21 +122,22 @@ class Floor(JsonDictContainer):
         checkNext = False        
         #south detection        
         for i in range(0,self.tilesWidth):
-                #self.log.debug('south check tile index : '+str(i+(self.tilesHeight*self.tilesWidth)-self.tilesWidth)) 
-                detectTile = self.tiles[i+(self.tilesHeight*self.tilesWidth)-self.tilesWidth]
+            self.log.debug('south check tile index : '+str(i+(self.tilesHeight*self.tilesWidth)-self.tilesWidth)) 
+            detectTile = self.tiles[i+(self.tilesHeight*self.tilesWidth)-self.tilesWidth]
 
-                if detectTile.hasFunction('IO') and not io1:
-                    io1 = True
-                    checkNext = True
-                elif detectTile.hasFunction('IO') and io1 and checkNext:
-                    io2 = True
-                else:
-                    io1 = False
-                    io2 = False
-                    checkNext = False 
+            if detectTile.hasFunction('IO') and not io1:
+                io1 = True
+                checkNext = True
+            elif detectTile.hasFunction('IO') and io1 and checkNext:
+                io2 = True
+            else:
+                io1 = False
+                io2 = False
+                checkNext = False 
 
-        if io1 and io2:
-            self.connectors['south'] = True    
+            if io1 and io2:
+                self.connectors['south'] = True
+                self.log.debug('south detected')    
             
         
         io1 = False
@@ -143,40 +145,42 @@ class Floor(JsonDictContainer):
         checkNext = False       
         #west detection        
         for i in range(0,self.tilesHeight):
-                #self.log.debug('west check tile index : '+str(i * self.tilesWidth)) 
-                detectTile = self.tiles[i * self.tilesWidth]
-                if detectTile.hasFunction('IO') and not io1:
-                    io1 = True
-                    checkNext = True
-                elif detectTile.hasFunction('IO') and io1 and checkNext:
-                    io2 = True
-                else:
-                    io1 = False
-                    io2 = False
-                    checkNext = False 
+            self.log.debug('west check tile index : '+str(i * self.tilesWidth)) 
+            detectTile = self.tiles[i * self.tilesWidth]
+            if detectTile.hasFunction('IO') and not io1:
+                io1 = True
+                checkNext = True
+            elif detectTile.hasFunction('IO') and io1 and checkNext:
+                io2 = True
+            else:
+                io1 = False
+                io2 = False
+                checkNext = False 
                     
-        if io1 and io2:
-            self.connectors['west'] = True
+            if io1 and io2:
+                self.connectors['west'] = True
+                self.log.debug('west detected')
                          
         io1 = False
         io2 = False  
         checkNext = False       
         #east detection        
         for i in range(0,self.tilesHeight):
-                self.log.debug('east check tile index : '+str((i * self.tilesWidth) + self.tilesWidth-1)) 
-                detectTile = self.tiles[(i * self.tilesWidth) + self.tilesWidth-1]
-                if detectTile.hasFunction('IO') and not io1:
-                    io1 = True
-                    checkNext = True
-                elif detectTile.hasFunction('IO') and io1 and checkNext:
-                    io2 = True
-                else:
-                    io1 = False
-                    io2 = False
-                    checkNext = False 
+            self.log.debug('east check tile index : '+str((i * self.tilesWidth) + self.tilesWidth-1)) 
+            detectTile = self.tiles[(i * self.tilesWidth) + self.tilesWidth-1]
+            if detectTile.hasFunction('IO') and not io1:
+                io1 = True
+                checkNext = True
+            elif detectTile.hasFunction('IO') and io1 and checkNext:
+                io2 = True
+            else:
+                io1 = False
+                io2 = False
+                checkNext = False 
 
-        if io1 and io2:
-            self.connectors['east'] = True
+            if io1 and io2:
+                self.connectors['east'] = True
+                self.log.debug('east detected') 
         
             
     def lockConnector(self,direction):
@@ -239,6 +243,7 @@ class Floor(JsonDictContainer):
         for i in range(0,self.tilesWidth):
             for j in range(0,self.tilesHeight):
                 newTiles.append( self.tiles[i + (j * self.tilesWidth)])
+        self.tiles = newTiles
         self.createConnector()
            
             

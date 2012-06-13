@@ -37,7 +37,8 @@ class Engine(object):
     def render(self):
         self.tableTop.addFloor(self.generateDongeonArray[0])
         self.tableTop.addFloor(self.generateDongeonArray[1])
-        #self.tableTop.addFloor(self.generateDongeonArray[2])
+        self.tableTop.addFloor(self.generateDongeonArray[2])
+        self.tableTop.addFloor(self.generateDongeonArray[3])
         self.renderObject.renderTabletop(self.tableTop)
         
     def generateDongeon(self):
@@ -55,7 +56,7 @@ class Engine(object):
         
         if not self.hasNonUniqueFloor(tempArray):
             if len(tempArray) < countAgain:
-                raise Exception('There are not enought floor subtype ' +subType+ '. rest '+str(len(tempArray))+' needed '+str(countAgain))
+                raise Exception('There are not enougth floor subtype ' +subType+ '. rest '+str(len(tempArray))+' needed '+str(countAgain))
         
         random.shuffle(tempArray)
         if tempArray[0].unique:

@@ -38,6 +38,7 @@ e.authorizeDungeonSubTypeCount('objective-room',1)
 e.generateDongeonArray.append(copy.deepcopy(e.data['floor']['corridor'][0]))
 e.generateDongeonArray.append(copy.deepcopy(e.data['floor']['corridor'][0]))
 e.generateDongeonArray.append(copy.deepcopy(e.data['floor']['corridor'][1]))
+e.generateDongeonArray.append(copy.deepcopy(e.data['floor']['dungeon-room'][0]))
 
 print(e.generateDongeonArray)
 
