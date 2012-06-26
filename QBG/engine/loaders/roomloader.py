@@ -2,9 +2,9 @@ import re
 import os
 from log4py import Logger
 from loader import Loader
-from ..floor import Floor 
+from ..room import Room 
 
-class FloorLoader(Loader):
+class RoomLoader(Loader):
 
     def __init__(self,directories,tileFunctionLoader):
         Loader.__init__(self)
@@ -22,7 +22,7 @@ class FloorLoader(Loader):
                 self.loadFiles(directory, os.listdir(directory))
             else:
                 self.log.error( directory + ' not exist') 
-        data['floor'] = self.data
+        data['room'] = self.data
         for subtype in self.data.iterkeys():
             self.log.info('Exist subtype : '+subtype)
          
@@ -32,13 +32,13 @@ class FloorLoader(Loader):
         for file in filesList:
             self.log.debug(file)
             if(os.path.isdir(directory+'/'+file) == False and os.access(directory+'/'+file, os.F_OK)):            
-                parser = Loader.loadParserForFile(self,'floor',directory+'/'+file)
+                parser = Loader.loadParserForFile(self,'room',directory+'/'+file)
                 if parser != None:
-                    floor = Floor(self.tileFunctionLoader)
-                    floor = parser.loadInClass(floor)
-                    if not floor.subType in self.data:
-                        self.data[floor.subType] = []
-                    self.data[floor.subType].append(floor)
-                    self.log.info('Floor "'+ floor.name + '" Done')
+                    room = Room(self.tileFunctionLoader)
+                    room = parser.loadInClass(room)
+                    if not room.subType in self.data:
+                        self.data[room.subType] = []
+                    self.data[room.subType].append(room)
+                    self.log.info('Room "'+ room.name + '" Done')
             
              

@@ -25,7 +25,7 @@ class Engine(object):
     
     
     def authorizeDungeonSubTypeCount(self,subType, count):
-        if subType in self.data['floor']:
+        if subType in self.data['room']:
             self.donjonSubTypeCount[subType] = count
         
     def addLoader(self,loader):
@@ -35,51 +35,51 @@ class Engine(object):
         self.renderObject = render
     
     def render(self):
-        self.tableTop.addFloor(self.generateDongeonArray[0])
-        self.tableTop.addFloor(self.generateDongeonArray[1])
-        self.tableTop.addFloor(self.generateDongeonArray[2])
-        self.tableTop.addFloor(self.generateDongeonArray[3])
+        #self.tableTop.addRoom(self.generateDongeonArray[0])
+        #self.tableTop.addRoom(self.generateDongeonArray[1])
+        self.tableTop.addRoom(self.generateDongeonArray[2])
+        self.tableTop.addRoom(self.generateDongeonArray[3])
         self.renderObject.renderTabletop(self.tableTop)
         
     def generateDongeon(self):
         
         for objectType,value in self.donjonSubTypeCount.iteritems():
             for i in range(0,value):
-                self.generateDongeonArray.append(self.takeOneRandomFloorOfType(objectType,value - i))
+                self.generateDongeonArray.append(self.takeOneRandomRoomOfType(objectType,value - i))
         
         random.shuffle(self.generateDongeonArray)
         self.pushObjectiveRoomToDeep(self.generateDongeonArray)
         
         
-    def takeOneRandomFloorOfType(self,subType,countAgain):
-        tempArray = self.data['floor'][subType]
+    def takeOneRandomRoomOfType(self,subType,countAgain):
+        tempArray = self.data['room'][subType]
         
-        if not self.hasNonUniqueFloor(tempArray):
+        if not self.hasNonUniqueRoom(tempArray):
             if len(tempArray) < countAgain:
-                raise Exception('There are not enougth floor subtype ' +subType+ '. rest '+str(len(tempArray))+' needed '+str(countAgain))
+                raise Exception('There are not enougth room subtype ' +subType+ '. rest '+str(len(tempArray))+' needed '+str(countAgain))
         
         random.shuffle(tempArray)
         if tempArray[0].unique:
-            uniqueFloor = tempArray[0]
-            tempArray.remove(uniqueFloor)
-            return uniqueFloor
+            uniqueRoom = tempArray[0]
+            tempArray.remove(uniqueRoom)
+            return uniqueRoom
         else:
             return copy.deepcopy(tempArray[0])
         
     def pushObjectiveRoomToDeep(self,generateDongeon):
-        for floor in generateDongeon:
-            if floor.subType == 'objective-room':
-                generateDongeon.remove(floor)
+        for room in generateDongeon:
+            if room.subType == 'objective-room':
+                generateDongeon.remove(room)
                 countItems = len(generateDongeon)
                 afterMiddle = countItems / 2
                 self.log.debug('push objective room after '+str(afterMiddle)+' index')
                 randomIndex = random.randrange(afterMiddle,countItems)
-                generateDongeon.insert(randomIndex,floor)
+                generateDongeon.insert(randomIndex,room)
                 break
      
-    def hasNonUniqueFloor(self,floors):
-        for floor in floors:
-            if not floor.unique:
+    def hasNonUniqueRoom(self,rooms):
+        for room in rooms:
+            if not room.unique:
                 return True           
         
         

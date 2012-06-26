@@ -11,11 +11,11 @@ class AsciiRender(Render):
     def renderTabletop(self,tableTop):
         asciiMap = ''
         index=0
-        self.log.debug('Tabletop size x:'+str(tableTop.globalWidth)+'  y:'+str(tableTop.globalHeight))
+        self.log.debug('Tabletop size x:'+str(tableTop.sizeX)+'  y:'+str(tableTop.sizeY))
         
-        for i in range(0,tableTop.globalHeight):
-            for j in range(0,tableTop.globalWidth):
-                tile = tableTop.globalTiles[index]
+        for i in range(0,tableTop.sizeY):
+            for j in range(0,tableTop.sizeX):
+                tile = tableTop.tiles[index]
                 asciiMap += self.getImageForTile(tile)
                 index +=1
             asciiMap += '\n'
@@ -25,8 +25,8 @@ class AsciiRender(Render):
     
     
     def getImageForTile(self,tile):
-        if tile.hasFunction('IO'):
+        if tile != None and tile.hasFunction('IO'):
             return '[D]'
-        if tile.hasFunction('D'):
+        if tile != None and tile.hasFunction('D'):
             return '[ ]'
-        return '   ';
+        return '___';

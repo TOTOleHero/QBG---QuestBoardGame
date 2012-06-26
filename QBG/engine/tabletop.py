@@ -1,107 +1,111 @@
-from floor import FloorConnectorException
+from room import RoomConnectorException
 from log4py import Logger
 import copy
 from tile import Tile
+from grid import Grid
+from connector import Connector
 
-class TableTop(object):
+from room import PositionnedRoom
+
+class TableTop(Grid):
     
     def __init__(self):
         self.log = Logger().get_instance(self.__class__.__name__)
-        self.globalTiles = []
-        self.globalWidth = 0
-        self.globalHeight = 0
-        self.floors = []
-        self.lastFloors = []
+        super(TableTop,self).__init__()
+        self.rooms = []
+        self.lastRooms = []
+        self.sizeY = 0
+        self.sizeX = 2
+        
+        
     
-    def addFloor(self,floor):
-        self.log.debug('Add floor '+floor.name)
-        self.floors.append(floor)
-        self.connectNewFloor(floor)
+    def addRoom(self,room):
+        self.log.debug('Add room '+room.name)
+        self.connectNewRoom(room)
         
         
         
-    def resizeTableTopAndAddTiles(self,floor,connectTo):
-        self.log.debug('Direction '+connectTo+', resize, old size '+str(self.globalWidth)+'x'+str(self.globalHeight)+' with '+str(len(self.globalTiles))+' tiles')
-        oldTiles = copy.deepcopy(self.globalTiles)
-        oldWidth = self.globalWidth
-        oldHeight = self.globalHeight
+    def resizeTableTopAndAddTiles(self,room,connectTo):
+        self.log.debug('Direction '+connectTo.direction+', resize, old size '+str(self.sizeX)+'x'+str(self.sizeY)+' with '+str(len(self.tiles))+' tiles')
         
-        self.globalTiles = []
+        oldTiles = copy.deepcopy(self.tiles)
+        self.tiles = []
         
+        oldWidth = self.sizeX
+        oldHeight = self.sizeY
+               
         extendSide = 0
-        if connectTo == 'north':
-            self.globalHeight += floor.tilesHeight
-            if self.globalWidth < floor.tilesWidth:
-                self.log.debug('('+str(floor.tilesWidth)+' - '+str(self.globalWidth)+') / 2 = ' +str(((floor.tilesWidth - self.globalWidth) / 2)))
         
-                extendSide = (floor.tilesWidth - self.globalWidth) / 2
-                #add two time extend side in west and east
-                self.globalWidth += extendSide
-                self.globalWidth += extendSide
-            self.log.debug('Add new tiles')
-            for tile in floor.tiles:
-                self.globalTiles.append(tile)
-            self.log.debug('Add old tiles')
-            
-            appendNewTile = 0          
-            for tile in oldTiles:
-                if appendNewTile == 0 and oldWidth < self.globalWidth:
-                    for i in range(0,extendSide):
-                        blankTile = Tile()
-                        blankTile.addFunction(floor.tileFunctionLoader.getTileFunctionFromCode('B'))
-                        self.globalTiles.append(blankTile)    
-                
-                self.globalTiles.append(tile)
-                appendNewTile += 1
-                
-                if appendNewTile == oldWidth and oldWidth < self.globalWidth:
-                    for i in range(0,extendSide):
-                        blankTile = Tile()
-                        blankTile.addFunction(floor.tileFunctionLoader.getTileFunctionFromCode('B'))
-                        self.globalTiles.append(blankTile)
-                    appendNewTile = 0
-            
-        if connectTo == 'west':
-            self.globalWidth += floor.tilesWidth
-            appendNewTile = 0          
-            for tile in oldTiles:
-                self.globalTiles.append(tile)
-                appendNewTile += 1
-                
-                if appendNewTile == oldWidth:
-                    for i in range(oldWidth,self.globalWidth):
-                        blankTile = Tile()
-                        blankTile.addFunction(floor.tileFunctionLoader.getTileFunctionFromCode('B'))
-                        self.globalTiles.append(blankTile)
-                    appendNewTile = 0
-            
-            
-        self.log.debug('Resize, new size '+str(self.globalWidth)+'x'+str(self.globalHeight)+' with '+str(len(self.globalTiles))+' tiles')
-              
-    def connectNewFloor(self,floor):
+        directionTo = connectTo.direction
         
-        #has last floor
-        if len(self.lastFloors) == 0:
-            self.log.debug(floor.name + ' is the first floor ')
-            connectTo = 'north'
+        compatibleConnector = room.getCompatibleConnector(connectTo)
+        
+        
+        
+        self.log.debug('connector '+ str(compatibleConnector) );
+        
+        
+        if directionTo == 'south' or directionTo == 'north':
+            beforeCompatible =  compatibleConnector.position1X
+            afterCompatible = (room.sizeX - 1) - compatibleConnector.position2X
+        
+        if directionTo == 'east' or directionTo == 'west':
+            beforeCompatible =  compatibleConnector.position1Y
+            afterCompatible = (room.sizeY - 1) - compatibleConnector.position2Y
+        
+        if directionTo == 'south':
+            self.sizeY = self.sizeY + room.sizeY
+            if self.sizeX < room.sizeX:
+                self.sizeX = self.sizeX + beforeCompatible + afterCompatible
+            
+        self.resetGrid()   
+        
+        
+        
+        
+        self.log.debug('before '+ str(beforeCompatible) + ' after ' + str(afterCompatible));
+        
+        
+                
+        
+        
+        
+        self.log.debug('Resize, new size '+str(self.sizeX)+'x'+str(self.sizeY)+' with '+str(len(self.tiles))+' tiles')
+        room.lockCompatibleConnector(connectTo.direction)      
+
+    
+    def connectNewRoom(self,room):
+        
+        #has last room
+        if len(self.lastRooms) == 0:
+            self.log.debug(room.name + ' is the first room ')
+            connectTo = Connector(None)
+            connectTo.position1X = 0 
+            connectTo.position1Y = 0
+            connectTo.position2X = 1
+            connectTo.position2Y = 0
+            connectTo.direction = 'south'
         else:
-            lastFloor = self.lastFloors[-1]
-            self.log.debug('connect new '+floor.name )
-            if not lastFloor.hasFreeConnector():
-                raise FloorConnectorException('old floor has no free connector')
-            self.log.debug(' to last '+lastFloor.name)
-            if not floor.hasFreeConnector():
-                raise FloorConnectorException('new floor has no free connector')
-            self.log.debug('check last connector '+lastFloor.name)
-            if len(lastFloor.getFreeConnectors()) > 1:
+            lastRoom = self.lastRooms[-1]
+            self.log.debug('connect new '+room.name )
+            if not lastRoom.hasFreeConnector():
+                raise RoomConnectorException('old room has no free connector')
+            self.log.debug(' to last '+lastRoom.name)
+            if not room.hasFreeConnector():
+                raise RoomConnectorException('new room has no free connector')
+            self.log.debug('check last connector '+lastRoom.name)
+            if len(lastRoom.getFreeConnectors()) > 1:
                 self.log.debug('more than one free connector to connect')
-                connectTo = lastFloor.getOneFreeConnector()
+                connectTo = lastRoom.getOneFreeConnector()
             else:
-                connectTo = lastFloor.getOneFreeConnector()
+                connectTo = lastRoom.getOneFreeConnector()
         
-        if not floor.rotateForCompatibleConnector(connectTo):
-            raise FloorConnectorException('No connector available')
-        floor.lockCompatibleConnector(connectTo)
-        self.lastFloors.append(floor)
-        self.resizeTableTopAndAddTiles(floor,connectTo)
+        if not room.rotateForCompatibleConnector(connectTo):
+            raise RoomConnectorException('No connector available')
+        
+        self.lastRooms.append(room)
+        self.resizeTableTopAndAddTiles(room,connectTo)
+        
+        
+        
         

@@ -26,9 +26,4 @@ class JsonParser(Parser):
         return tokens[0]
         
     
-class JsonDictContainer(object):
-    
-    def setDict(self,dictData):
-        
-        self.dictData = dictData
-        
+       
