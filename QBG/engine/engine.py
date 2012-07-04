@@ -35,9 +35,12 @@ class Engine(object):
         self.renderObject = render
     
     def render(self):
-        #self.tableTop.addRoom(self.generateDongeonArray[0])
-        #self.tableTop.addRoom(self.generateDongeonArray[1])
+        self.tableTop.addRoom(self.generateDongeonArray[0])
+        self.renderObject.renderTabletop(self.tableTop)
+        self.tableTop.addRoom(self.generateDongeonArray[1])
+        self.renderObject.renderTabletop(self.tableTop)
         self.tableTop.addRoom(self.generateDongeonArray[2])
+        self.renderObject.renderTabletop(self.tableTop)
         self.tableTop.addRoom(self.generateDongeonArray[3])
         self.renderObject.renderTabletop(self.tableTop)
         

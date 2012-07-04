@@ -26,5 +26,8 @@ class Connector(object):
     def __str__(self, *args, **kwargs):
         connectorString = 'Connector : ' + self.direction  
         connectorString += ' @('+str(self.position1X)+','+str(self.position1Y)+')('+str(self.position2X)+','+str(self.position2Y)+')'
-        connectorString += ' of room : '+self.room.name
+        if self.room != None :
+            connectorString += ' of room : '+self.room.name
+        else:
+            connectorString += ' of NO room '
         return connectorString        

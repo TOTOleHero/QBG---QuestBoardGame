@@ -3,7 +3,7 @@ from tile import Tile
 from connector import Connector
 from grid import Grid
 from direction import Direction
-
+import copy
 
 
 
@@ -160,14 +160,14 @@ class Room(Grid):
                     
             if io1 and io2:
                 connector = Connector(self)
-                connector.position2Y = i / self.sizeY 
+                connector.position2Y = 0 
                 connector.position2X = i % self.sizeX
                 connector.position1Y = connector.position2Y
                 connector.position1X = connector.position2X - 1
                 connector.direction = 'north'
                 self.connectors['north'] = connector
                 
-                self.log.debug('north detected')
+                self.log.debug('north detected:'+str(connector))
             
         
         io1 = False
@@ -175,8 +175,9 @@ class Room(Grid):
         checkNext = False        
         #south detection        
         for i in range(0,self.sizeX):
-            self.log.debug('south check tile index : '+str(i+(self.sizeY*self.sizeX)-self.sizeX)) 
-            detectTile = self.tiles[i+(self.sizeY*self.sizeX)-self.sizeX]
+            tileIndex = i + ( self.sizeY * self.sizeX ) - self.sizeX
+            self.log.debug('south check tile index : '+ str(tileIndex))
+            detectTile = self.tiles[tileIndex]
 
             if detectTile.hasFunction('IO') and not io1:
                 io1 = True
@@ -190,13 +191,13 @@ class Room(Grid):
 
             if io1 and io2:
                 connector = Connector(self)
-                connector.position2Y = i / self.sizeY 
+                connector.position2Y = self.sizeY - 1 
                 connector.position2X = i % self.sizeX
                 connector.position1Y = connector.position2Y
                 connector.position1X = connector.position2X - 1
                 connector.direction = 'south'
                 self.connectors['south'] = connector
-                self.log.debug('south detected')    
+                self.log.debug('south detected:'+str(connector))    
             
         
         io1 = False
@@ -219,12 +220,12 @@ class Room(Grid):
             if io1 and io2:
                 connector = Connector(self)
                 connector.position2Y = i / self.sizeY 
-                connector.position2X = i % self.sizeX
+                connector.position2X = 0
                 connector.position1Y = connector.position2Y - 1 
                 connector.position1X = connector.position2X
                 connector.direction = 'west'
                 self.connectors['west'] = connector
-                self.log.debug('west detected')
+                self.log.debug('west detected:'+str(connector))
                          
         io1 = False
         io2 = False  
@@ -246,12 +247,12 @@ class Room(Grid):
             if io1 and io2:
                 connector = Connector(self)
                 connector.position2Y = i / self.sizeY 
-                connector.position2X = i % self.sizeX
+                connector.position2X = self.sizeX - 1
                 connector.position1Y = connector.position2Y - 1 
                 connector.position1X = connector.position2X
                 connector.direction = 'east'
                 self.connectors['east'] = connector
-                self.log.debug('east detected') 
+                self.log.debug('east detected:'+str(connector))
         
     
     '''
@@ -308,7 +309,7 @@ class Room(Grid):
         for loopDirection,connector in self.connectors.iteritems():
             if not connector.locked:
                 freeConnectors.append(connector) 
-        self.log.debug(self.name + ' has free connectors :'+str(freeConnectors))
+        self.log.debug(self.name + ' get '+str(len(freeConnectors))+' free connectors :'+str(freeConnectors))
         return freeConnectors
     
     '''
@@ -346,24 +347,66 @@ class Room(Grid):
 
 class PositionnedRoom(Room):
     
-    def __init__(self,x,y,room):
-        super(PositionnedRoom,self).__init__()
+    def __init__(self,room):
+        super(PositionnedRoom,self).__init__(room)
+        self.startX = 0
+        self.startY = 0
+        self.room = room
+        self.connectors = copy.deepcopy(room.connectors)
+        self.sizeX = room.sizeX
+        self.sizeY = room.sizeY
+        self.tiles = copy.deepcopy(room.tiles)
+        self.name = room.name
+    
+    def translate(self,x,y):
+        self.log.debug('Translate '+str(x)+' '+str(y))
         self.startX = x
         self.startY = y
-        self.room = room
-    
+        self.translateConnector()       
+        
     def translateConnector(self):
-        for connector in self.room.connectors:
+        
+        for direction,connector in self.room.connectors.iteritems():
             connector.position1X = connector.position1X + self.startX
             connector.position1Y = connector.position1Y + self.startY
             connector.position2X = connector.position2X + self.startX
             connector.position2Y = connector.position2Y + self.startY
-            self.connectors.append(connector)
+            self.connectors[direction] = connector
         
+    def getTile(self, x, y):
+        self.log.debug('sizeX: '+str(self.sizeX)+'/sizeY:'+str(self.sizeY))
+        self.log.debug('getTile @ '+str(x)+' '+str(y))
+        realX = x - self.startX
+        realY = y - self.startY
+        self.log.debug('getTile @real '+str(realX)+' '+str(realY))
+        return self.room.getTile(realX,realY)
 
+    def rotate(self):
+        self.room.rotate()
+        self.sizeX = self.room.sizeX
+        self.sizeY = self.room.sizeY
+        self.tiles = copy.deepcopy(self.room.tiles)
+        
+    '''
+    Set tile at position X/Y
+    '''
+    def setTile(self,tile,x,y):
+        self.log.debug('setTile @ '+str(x)+' '+str(y))
+        realX = x - self.startX
+        realY = y - self.startY
+        self.tiles[realX + (realY * self.sizeX)] = tile
 
+    def getMaxX(self):
+        return self.startX + (self.sizeX -1)
+    
+    def getMaxY(self):
+        #self.log.debug('getMaxY sizeY:'+str(self.sizeY))
+        return self.startY + (self.sizeY -1)
 
-
-
+    def getMinY(self):
+        return self.startY
+    
+    def getMinX(self):
+        return self.startX
              
         

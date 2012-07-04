@@ -20,18 +20,24 @@ class Grid(object):
         self.sizeY = 0
         self.tiles = []
     
+    
+    
     '''
     rotate all tiles in grid
     '''    
     def rotate(self):
-        self.log.debug('Rotate '+self.name+' left')
+        self.log.debug('Rotate '+self.name+' left. '+str(len(self.tiles))+' of '+str(self.sizeX)+'/'+str(self.sizeY))
         newTiles = []
         j = 0
         for i in range(0,self.sizeX):
             for j in range(0,self.sizeY):
                 newTiles.append( self.tiles[i + (j * self.sizeX)])
         self.tiles = newTiles
-
+        x = self.sizeX
+        self.sizeX = self.sizeY
+        self.sizeY = x
+        self.log.debug('After rotate '+self.name+' left. '+str(len(self.tiles))+' of '+str(self.sizeX)+'/'+str(self.sizeY))
+        
     '''
     Check if the grid have X and Y compatible with her tiles number
     ''' 
@@ -44,14 +50,28 @@ class Grid(object):
     Get tile at position X/Y
     '''   
     def getTile(self,x,y):
-        return self.tiles[(x + y * self.sizeX)]    
+        self.log.debug('sizeX: '+str(self.sizeX)+'/sizeY:'+str(self.sizeY))
+        
+        indexTile = (x + y * self.sizeX)
+        self.log.debug('getTile @ '+str(x) +' '+str(y)+' @index:'+str(indexTile)+' in '+str(len(self.tiles))+' tiles')
+        return self.tiles[indexTile]    
     
     '''
     Set tile at position X/Y
     '''
     def setTile(self,tile,x,y):
-        pass
+        self.log.debug('setTile @ '+str(x)+' '+str(y)+' grid size '+str(self.sizeX)+' '+str(self.sizeY))
+        self.tiles[x + (y * self.sizeX)] = tile
     
     def resetGrid(self):
+        self.log.debug('resetGrid to '+str(self.sizeX)+' '+str(self.sizeY))
+        self.tiles = []
         for i in range(0, self.sizeX * self.sizeY):
             self.tiles.append(None)
+
+
+                
+            
+            
+            
+            
