@@ -25,7 +25,9 @@ class TableTop(Grid):
         room = PositionnedRoom(room)
         self.log.debug('nb tiles '+str(len(room.tiles)))
         self.connectNewRoom(room)
-
+        if room.subType == 'objective-room':
+            return False
+        return True
     
     def connectNewRoom(self,room):
         
@@ -66,6 +68,8 @@ class TableTop(Grid):
         self.log.debug('A -- room have '+str(len(room.tiles))+' tiles')
         self.log.debug('connectTo:'+str(connectTo))
        
+        self.log.debug('room:'+str(room))
+       
         actualX = connectTo.position1X
         actualY = connectTo.position1Y
         
@@ -85,19 +89,21 @@ class TableTop(Grid):
               
         
         if connectTo.direction == 'south':
-            translateY = translateY +1   
+            translateY = translateY + 1   
         elif connectTo.direction == 'north':
-            translateY = translateY -1   
+            translateY = translateY - 1   
         elif connectTo.direction == 'west':
-            translateX = translateX -1   
+            translateX = translateX - 1   
         elif connectTo.direction == 'east':
-            translateX = translateX +1   
+            translateX = translateX + 1   
          
         
         self.log.debug('translateX after adapt :'+str(translateX))
         self.log.debug('translateY after adapt :'+str(translateY))
               
         room.translate(translateX,translateY)       
+        
+        self.log.debug('translate room:'+str(room))
         
         self.log.debug('B -- room have '+str(len(room.tiles))+' tiles')
         
@@ -122,7 +128,7 @@ class TableTop(Grid):
             expandYsouth =  room.getMaxY() - ( self.sizeY -1)
         if room.getMinX() < 0:
             expandXwest =  abs(room.getMinX())
-        if room.getMinX() < 0:
+        if room.getMinY() < 0:
             expandYnorth =  abs(room.getMinY())
         
         self.log.debug('expandXeast:'+str(expandXeast))
@@ -150,11 +156,16 @@ class TableTop(Grid):
         for y in range(0,oldSizeY):
             for x in range(0,oldSizeX):
                 oldTileIndex = x + (y * oldSizeX)
-                self.log.debug('transfert :'+str(x+abs(expandXwest))+','+str(y))
+                #self.log.debug('transfert :'+str(x+abs(expandXwest))+','+str(y))
                 self.setTile(oldTiles[oldTileIndex], x+abs(expandXwest), y)
         self.log.debug('transfert : end')
+         
+        #for lastRoom in self.lastRooms:
+        #    lastRoom.translate(expandXwest,expandYnorth)
                 
-        #room.translate(expandXwest,expandYsouth)
+        room.translate(expandXwest,expandYnorth)
+        
+        self.log.debug('translate room:'+str(room))
         
         self.log.debug('maxX:'+str(room.getMaxX()))
         self.log.debug('maxY:'+str(room.getMaxY()))
@@ -166,10 +177,10 @@ class TableTop(Grid):
 
         for y in range(room.getMinY(),room.getMaxY()+1):
             for x in range(room.getMinX(),room.getMaxX()+1):
-                self.log.debug('['+str(count)+'] Transfer tiles '+str(x)+' '+str(y)+' in '+str(len(self.tiles)))
+                #self.log.debug('['+str(count)+'] Transfer tiles '+str(x)+' '+str(y)+' in '+str(len(self.tiles)))
                 self.setTile(room.getTile(x,y), x, y)
                 count = count + 1
-        
+                
         
         
                 

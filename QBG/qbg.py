@@ -36,11 +36,14 @@ e.authorizeDungeonSubTypeCount('objective-room',1)
 
 print('###'+str(len(e.data['room']['corridor'][0].tiles))+'##')
 
-#e.generateDongeon()
-e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][1]))
-e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][1]))
-e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][0]))
-e.generateDongeonArray.append(copy.deepcopy(e.data['room']['dungeon-room'][0]))
+e.generateDongeon()
+#===============================================================================
+# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][1]))
+# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][1]))
+# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][0]))
+# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['dungeon-room'][0]))
+# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][1]))
+#===============================================================================
 
 print(e.generateDongeonArray)
 

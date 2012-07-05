@@ -28,10 +28,11 @@ class Grid(object):
     def rotate(self):
         self.log.debug('Rotate '+self.name+' left. '+str(len(self.tiles))+' of '+str(self.sizeX)+'/'+str(self.sizeY))
         newTiles = []
-        j = 0
-        for i in range(0,self.sizeX):
-            for j in range(0,self.sizeY):
-                newTiles.append( self.tiles[i + (j * self.sizeX)])
+        
+        for x in range(0,self.sizeX):
+            #need to reverse tiles reader in y axis
+            for y in range((self.sizeY -1),-1,-1):
+                newTiles.append( self.tiles[x + (y * self.sizeX)])
         self.tiles = newTiles
         x = self.sizeX
         self.sizeX = self.sizeY
@@ -60,7 +61,7 @@ class Grid(object):
     Set tile at position X/Y
     '''
     def setTile(self,tile,x,y):
-        self.log.debug('setTile @ '+str(x)+' '+str(y)+' grid size '+str(self.sizeX)+' '+str(self.sizeY))
+        #self.log.debug('setTile @ '+str(x)+' '+str(y)+' grid size '+str(self.sizeX)+' '+str(self.sizeY))
         self.tiles[x + (y * self.sizeX)] = tile
     
     def resetGrid(self):

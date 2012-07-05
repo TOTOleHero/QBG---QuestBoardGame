@@ -4,7 +4,7 @@ from connector import Connector
 from grid import Grid
 from direction import Direction
 import copy
-
+from renders.asciirender import AsciiRender
 
 
 class RoomConnectorException(Exception):
@@ -146,7 +146,8 @@ class Room(Grid):
         checkNext = False        
         #north detection        
         for i in range(0,self.sizeX):
-            self.log.debug('north check tile index : '+str(i))    
+            tileIndex = i
+            self.log.debug('north check tile index : '+str(tileIndex))    
             detectTile = self.tiles[i]
             if detectTile.hasFunction('IO') and not io1:
                 io1 = True
@@ -161,7 +162,7 @@ class Room(Grid):
             if io1 and io2:
                 connector = Connector(self)
                 connector.position2Y = 0 
-                connector.position2X = i % self.sizeX
+                connector.position2X = tileIndex % self.sizeX
                 connector.position1Y = connector.position2Y
                 connector.position1X = connector.position2X - 1
                 connector.direction = 'north'
@@ -205,8 +206,9 @@ class Room(Grid):
         checkNext = False       
         #west detection        
         for i in range(0,self.sizeY):
-            self.log.debug('west check tile index : '+str(i * self.sizeX)) 
-            detectTile = self.tiles[i * self.sizeX]
+            tileIndex = i * self.sizeX
+            self.log.debug('west check tile index : '+str(tileIndex)) 
+            detectTile = self.tiles[tileIndex]
             if detectTile.hasFunction('IO') and not io1:
                 io1 = True
                 checkNext = True
@@ -219,7 +221,7 @@ class Room(Grid):
                     
             if io1 and io2:
                 connector = Connector(self)
-                connector.position2Y = i / self.sizeY 
+                connector.position2Y = tileIndex / self.sizeX 
                 connector.position2X = 0
                 connector.position1Y = connector.position2Y - 1 
                 connector.position1X = connector.position2X
@@ -232,8 +234,9 @@ class Room(Grid):
         checkNext = False       
         #east detection        
         for i in range(0,self.sizeY):
-            self.log.debug('east check tile index : '+str((i * self.sizeX) + self.sizeX-1)) 
-            detectTile = self.tiles[(i * self.sizeX) + self.sizeX-1]
+            tileIndex = (i * self.sizeX) + self.sizeX - 1
+            self.log.debug('east check tile index : '+str(tileIndex) )
+            detectTile = self.tiles[tileIndex]
             if detectTile.hasFunction('IO') and not io1:
                 io1 = True
                 checkNext = True
@@ -246,7 +249,7 @@ class Room(Grid):
 
             if io1 and io2:
                 connector = Connector(self)
-                connector.position2Y = i / self.sizeY 
+                connector.position2Y = tileIndex / self.sizeX 
                 connector.position2X = self.sizeX - 1
                 connector.position1Y = connector.position2Y - 1 
                 connector.position1X = connector.position2X
@@ -310,6 +313,10 @@ class Room(Grid):
             if not connector.locked:
                 freeConnectors.append(connector) 
         self.log.debug(self.name + ' get '+str(len(freeConnectors))+' free connectors :'+str(freeConnectors))
+        
+        for connector in freeConnectors:
+            self.log.debug('Free connector : '+str(connector))
+        
         return freeConnectors
     
     '''
@@ -357,20 +364,23 @@ class PositionnedRoom(Room):
         self.sizeY = room.sizeY
         self.tiles = copy.deepcopy(room.tiles)
         self.name = room.name
+        self.subType = room.subType
     
     def translate(self,x,y):
         self.log.debug('Translate '+str(x)+' '+str(y))
-        self.startX = x
-        self.startY = y
-        self.translateConnector()       
+        self.startX = self.startX + x
+        self.startY = self.startY + y
+        self.translateConnector(x,y)       
         
-    def translateConnector(self):
+    def translateConnector(self,x,y):
         
-        for direction,connector in self.room.connectors.iteritems():
-            connector.position1X = connector.position1X + self.startX
-            connector.position1Y = connector.position1Y + self.startY
-            connector.position2X = connector.position2X + self.startX
-            connector.position2Y = connector.position2Y + self.startY
+        for direction,connector in self.connectors.iteritems():
+            self.log.debug('Translate connector old '+str(connector))
+            connector.position1X = connector.position1X + x
+            connector.position1Y = connector.position1Y + y
+            connector.position2X = connector.position2X + x
+            connector.position2Y = connector.position2Y + y
+            self.log.debug('Translate connector new '+str(connector))
             self.connectors[direction] = connector
         
     def getTile(self, x, y):
@@ -386,6 +396,7 @@ class PositionnedRoom(Room):
         self.sizeX = self.room.sizeX
         self.sizeY = self.room.sizeY
         self.tiles = copy.deepcopy(self.room.tiles)
+        self.connectors = copy.deepcopy(self.room.connectors)
         
     '''
     Set tile at position X/Y
@@ -408,5 +419,12 @@ class PositionnedRoom(Room):
     
     def getMinX(self):
         return self.startX
+    
+    def __str__(self, *args, **kwargs):
+        render = AsciiRender()
+        return render.renderRoom(self)
+          
+
+        
              
         
