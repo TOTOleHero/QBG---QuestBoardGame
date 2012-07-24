@@ -5,6 +5,7 @@ from engine.loaders.roomloader import RoomLoader
 from engine.loaders.tileloader import TileLoader
 from engine.loaders.tilefunctionloader import TileFunctionLoader
 from engine.renders.asciirender import AsciiRender
+from engine.tabletop import TileException
 import copy
 
 from log4py import Logger
@@ -45,9 +46,16 @@ e.generateDongeon()
 # e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][1]))
 #===============================================================================
 
-print(e.generateDongeonArray)
 
-e.setRender(AsciiRender())
+
+try:
+    e.setRender(AsciiRender())
+except engine.tabletop.TileException :
+    Print('no render')
+
+
+    
+    pass
 
 e.render()
 

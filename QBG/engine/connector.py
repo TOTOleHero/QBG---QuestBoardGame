@@ -9,6 +9,7 @@ class Connector(object):
         self.direction = None
         self.locked = False
         self.room = room
+        self.roomDealer = None
         
     def getPositionX(self):
         if self.position1X == self.position2X:
@@ -30,4 +31,10 @@ class Connector(object):
             connectorString += ' of room : '+self.room.name
         else:
             connectorString += ' of NO room '
+            
+            
+        if self.roomDealer != None :
+            connectorString += ' roomDealer OK'
+        else:
+            connectorString += ' roomDealer NULL '   
         return connectorString        

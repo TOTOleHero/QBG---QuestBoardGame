@@ -51,10 +51,10 @@ class Grid(object):
     Get tile at position X/Y
     '''   
     def getTile(self,x,y):
-        self.log.debug('sizeX: '+str(self.sizeX)+'/sizeY:'+str(self.sizeY))
+        #self.log.debug('sizeX: '+str(self.sizeX)+'/sizeY:'+str(self.sizeY))
         
         indexTile = (x + y * self.sizeX)
-        self.log.debug('getTile @ '+str(x) +' '+str(y)+' @index:'+str(indexTile)+' in '+str(len(self.tiles))+' tiles')
+        #self.log.debug('getTile @ '+str(x) +' '+str(y)+' @index:'+str(indexTile)+' in '+str(len(self.tiles))+' tiles')
         return self.tiles[indexTile]    
     
     '''

@@ -59,6 +59,8 @@ class Room(Grid):
         List of connectors for this room
         '''
         self.connectors = {}
+        
+        self.roomDealer = None
                    
         
 
@@ -273,9 +275,22 @@ class Room(Grid):
     '''
     Lock connector for direction
     '''
-    def lockCompatibleConnector(self,direction):
+    def lockCompatibleConnector(self,direction,roomDealer):
+        self.log.debug('Lock connector')
+        
         self.lockConnector(Direction.directionCompatibility[direction])
-    
+        
+        countFreeConnector = len(self.getFreeConnectors())
+        if roomDealer != None:
+            
+            split = roomDealer.split(countFreeConnector)
+            
+            index = 0
+            for connector in self.getFreeConnectors():
+                connector.roomDealer = split[index]
+                index = index+1
+        
+                
     
     
     '''
@@ -300,7 +315,9 @@ class Room(Grid):
     get compatible connector for requested connector
     ''' 
     def getCompatibleConnector(self,connector):
-        self.log.debug('get compatible connector')
+        self.log.debug('get compatible connector'+str(connector))
+        self.log.debug(str(len(self.connectors))+' connectors for room'+self.name)
+        self.rotateForCompatibleConnector(connector) 
         return self.connectors[Direction.directionCompatibility[connector.direction]]
     
      
@@ -384,11 +401,11 @@ class PositionnedRoom(Room):
             self.connectors[direction] = connector
         
     def getTile(self, x, y):
-        self.log.debug('sizeX: '+str(self.sizeX)+'/sizeY:'+str(self.sizeY))
-        self.log.debug('getTile @ '+str(x)+' '+str(y))
+        #self.log.debug('sizeX: '+str(self.sizeX)+'/sizeY:'+str(self.sizeY))
+        #self.log.debug('getTile @ '+str(x)+' '+str(y))
         realX = x - self.startX
         realY = y - self.startY
-        self.log.debug('getTile @real '+str(realX)+' '+str(realY))
+        #self.log.debug('getTile @real '+str(realX)+' '+str(realY))
         return self.room.getTile(realX,realY)
 
     def rotate(self):
