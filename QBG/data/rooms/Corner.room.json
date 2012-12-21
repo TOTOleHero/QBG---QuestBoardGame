@@ -1,0 +1,14 @@
+{
+	"name":"Corner"
+	,"subType" : "corridor"
+	,"unique" : true
+	,"definition" : [
+	 [ ["D"], ["D"],["D"], ["IO"] ]
+	
+	,[ ["D"], ["D"],["D"], ["IO"] ]
+	
+	,[ ["D"],  ["D"],["B"],  ["B"]   ]
+	
+	,[ ["IO"],  ["IO"],["B"],  ["B"]   ]
+	]
+}

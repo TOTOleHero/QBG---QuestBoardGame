@@ -98,9 +98,10 @@ class Engine(object):
             if room.subType == 'objective-room':
                 generateDongeon.remove(room)
                 countItems = len(generateDongeon)
-                afterMiddle = countItems / 2
-                self.log.debug('push objective room after ' + str(afterMiddle) + ' index')
-                randomIndex = random.randrange(afterMiddle, countItems)
+                afterLimit = (countItems / 3) * 2
+                self.log.debug('push objective room after ' + str(afterLimit) + ' index')
+                randomIndex = random.randrange(afterLimit, countItems)
+                self.log.debug('push objective room in ' + str(randomIndex) + ' index')
                 generateDongeon.insert(randomIndex, room)
                 break
      
