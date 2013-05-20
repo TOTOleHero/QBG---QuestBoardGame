@@ -1,0 +1,13 @@
+{
+    "name": "Barbarian",
+    "type": "hero",
+    "move": 4,
+    "weaponSkill": 3,
+    "ballisticSkill": 5,
+    "strength": 4,
+    "toughness": 3,
+    "wounds": 9,
+    "woundsModifier": "+1D6",
+    "initiative": 3,
+    "attacks": 1
+}

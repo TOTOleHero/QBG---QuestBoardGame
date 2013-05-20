@@ -37,4 +37,16 @@ class Connector(object):
             connectorString += ' roomDealer OK'
         else:
             connectorString += ' roomDealer NULL '   
-        return connectorString        
+        return connectorString
+    
+    def acquire_item(self, item):
+        '''
+        Acquire an item
+        '''
+        self._items.append(item)
+
+    def equip(self, item):
+        '''
+        equip an item
+        '''
+        item.equip(self)

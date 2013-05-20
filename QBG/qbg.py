@@ -3,6 +3,8 @@
 from engine.engine import Engine
 from engine.loaders.roomloader import RoomLoader
 from engine.loaders.tileloader import TileLoader
+from engine.loaders.itemloader import ItemLoader
+from engine.loaders.creatureloader import CreatureLoader
 from engine.loaders.tilefunctionloader import TileFunctionLoader
 from engine.renders.asciirender import AsciiRender
 from engine.tabletop import TileException
@@ -14,13 +16,19 @@ Logger.configfiles.append('conf/log4py.conf')
 
 e = Engine()
 
-tileLoader          = TileLoader('data/tiles')
-tileFunctionLoader  = TileFunctionLoader('data/tilesfunction')
-roomLoader         = RoomLoader('data/rooms',tileFunctionLoader)
+tileLoader              = TileLoader('data/tiles')
+tileFunctionLoader      = TileFunctionLoader('data/tilesfunction')
+roomLoader              = RoomLoader('data/rooms',tileFunctionLoader)
+itemLoader              = ItemLoader('data/items')
+creatureLoader          = CreatureLoader('data/creatures',itemLoader)
+
+e.addLoader(itemLoader)
+e.addLoader(creatureLoader)
 
 e.addLoader(tileLoader)
 e.addLoader(tileFunctionLoader)
 e.addLoader(roomLoader)
+
 
 
 e.load()

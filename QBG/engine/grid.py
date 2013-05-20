@@ -15,7 +15,7 @@ Grid with X and Y position (origin is at the top-left)
 class Grid(object):
     
     def __init__(self):
-        self.log = Logger().get_instance(self.__class__.__name__)
+        #self.log = Logger().get_instance(self.__class__.__name__)
         self.sizeX = 0
         self.sizeY = 0
         self.tiles = []
@@ -26,7 +26,7 @@ class Grid(object):
     rotate all tiles in grid
     '''    
     def rotate(self):
-        self.log.debug('Rotate '+self.name+' left. '+str(len(self.tiles))+' of '+str(self.sizeX)+'/'+str(self.sizeY))
+        #self.log.debug('Rotate '+self.name+' left. '+str(len(self.tiles))+' of '+str(self.sizeX)+'/'+str(self.sizeY))
         newTiles = []
         
         for x in range(0,self.sizeX):
@@ -37,7 +37,7 @@ class Grid(object):
         x = self.sizeX
         self.sizeX = self.sizeY
         self.sizeY = x
-        self.log.debug('After rotate '+self.name+' left. '+str(len(self.tiles))+' of '+str(self.sizeX)+'/'+str(self.sizeY))
+        #self.log.debug('After rotate '+self.name+' left. '+str(len(self.tiles))+' of '+str(self.sizeX)+'/'+str(self.sizeY))
         
     '''
     Check if the grid have X and Y compatible with her tiles number
@@ -65,7 +65,7 @@ class Grid(object):
         self.tiles[x + (y * self.sizeX)] = tile
     
     def resetGrid(self):
-        self.log.debug('resetGrid to '+str(self.sizeX)+' '+str(self.sizeY))
+        #self.log.debug('resetGrid to '+str(self.sizeX)+' '+str(self.sizeY))
         self.tiles = []
         for i in range(0, self.sizeX * self.sizeY):
             self.tiles.append(None)
