@@ -1,0 +1,13 @@
+{
+    "name": "Wizard",
+    "type": "hero",
+    "move": 4,
+    "weaponSkill": 2,
+    "ballisticSkill": 6,
+    "strength": 3,
+    "toughness": 3,
+    "wounds": 6,
+    "woundsModifier": "+1D6",
+    "initiative": 3,
+    "attacks": 1
+}

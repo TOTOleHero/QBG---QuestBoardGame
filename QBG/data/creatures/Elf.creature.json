@@ -1,0 +1,13 @@
+{
+    "name": "Elf",
+    "type": "hero",
+    "move": 4,
+    "weaponSkill": 4,
+    "ballisticSkill": 4,
+    "strength": 3,
+    "toughness": 3,
+    "wounds": 7,
+    "woundsModifier": "+1D6",
+    "initiative": 6,
+    "attacks": 1
+}

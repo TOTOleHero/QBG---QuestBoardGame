@@ -1,0 +1,13 @@
+{
+    "name": "Dwarf",
+    "type": "hero",
+    "move": 4,
+    "weaponSkill": 4,
+    "ballisticSkill": 5,
+    "strength": 4,
+    "toughness": 4,
+    "wounds": 8,
+    "woundsModifier": "+1D6",
+    "initiative": 2,
+    "attacks": 1
+}
