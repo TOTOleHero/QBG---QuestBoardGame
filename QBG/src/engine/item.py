@@ -15,8 +15,9 @@ class Item(object):
   _name = ""
   _gold = 0
   _effects = []
-  _type = None
+  _type = 'Item'
   _magical = False
+  _ranged = True
   _modfiers = []
     
   def __init__(self, name=None, gold=0, effects=None):
@@ -33,6 +34,7 @@ class Item(object):
     self._gold = gold
     self._effects = effects
     self._type = None
+    self._basePurchasePrice = 0
     
   def equip(self, target):
     pass
@@ -48,5 +50,10 @@ class Item(object):
     self._name = dictData['name']
     self._type = dictData['type']
     self._gold = dictData['gold']
-    self._stock = dictData['stock']
+    self._basePurchasePrice = dictData['basePurchasePrice']
+    
+    if dictData.has_key('stock'):
+        self._ranged = dictData['stock']
+    if dictData.has_key('ranged'):
+        self._ranged = dictData['ranged']
 
