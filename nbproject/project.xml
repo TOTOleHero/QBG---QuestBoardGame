@@ -5,7 +5,7 @@
         <data xmlns="http://nbpython.dev.java.net/ns/php-project/1">
             <name>QBG</name>
             <sources>
-                <root id="QBG.dir"/>
+                <root id="src.src.dir"/>
             </sources>
             <tests/>
         </data>

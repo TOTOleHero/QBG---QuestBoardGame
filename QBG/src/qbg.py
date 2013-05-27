@@ -9,18 +9,25 @@ from engine.loaders.tilefunctionloader import TileFunctionLoader
 from engine.renders.asciirender import AsciiRender
 from engine.tabletop import TileException
 import copy
+import os
 
 from log4py import Logger
 
-Logger.configfiles.append('conf/log4py.conf')
+
+
+
+filePath = os.path.dirname(__file__)
+rootPath = os.path.realpath(filePath+os.sep+'..')
+
+Logger.configfiles.append(rootPath+os.sep+'conf'+os.sep+'log4py.conf')
 
 e = Engine()
 
-tileLoader              = TileLoader('data/tiles')
-tileFunctionLoader      = TileFunctionLoader('data/tilesfunction')
-roomLoader              = RoomLoader('data/rooms',tileFunctionLoader)
-itemLoader              = ItemLoader('data/items')
-creatureLoader          = CreatureLoader('data/creatures',itemLoader)
+tileLoader              = TileLoader(rootPath+os.sep+'data'+os.sep+'tiles')
+tileFunctionLoader      = TileFunctionLoader(rootPath+os.sep+'data'+os.sep+'tilesfunction')
+roomLoader              = RoomLoader(rootPath+os.sep+'data'+os.sep+'rooms',tileFunctionLoader)
+itemLoader              = ItemLoader(rootPath+os.sep+'data'+os.sep+'items')
+creatureLoader          = CreatureLoader(rootPath+os.sep+'data'+os.sep+'creatures',itemLoader)
 
 e.addLoader(itemLoader)
 e.addLoader(creatureLoader)
@@ -42,8 +49,6 @@ for rooms in e.data['room'].itervalues():
 e.authorizeDungeonSubTypeCount('corridor',12)
 e.authorizeDungeonSubTypeCount('dungeon-room',4)
 e.authorizeDungeonSubTypeCount('objective-room',1)
-
-print('###'+str(len(e.data['room']['corridor'][0].tiles))+'##')
 
 e.generateDongeon()
 #===============================================================================

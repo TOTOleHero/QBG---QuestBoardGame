@@ -11,7 +11,7 @@ class Loader(object):
     def loadParserForFile(self,objectType,fileName):
         parser = None
         self.log.debug('Want load object of type "'+objectType+'"')
-        
+        self.log.debug('tokenize filename "'+fileName+'"')
         tokens = re.split('[.]',fileName)
         self.log.debug('tokens are : '+str(tokens))
         self.log.debug('check : '+str(tokens[1])+' == '+str(objectType))

@@ -25,8 +25,8 @@ class ItemLoader(Loader):
     def loadFiles(self,directory, filesList):
         
         for file in filesList:
-            self.log.debug(file)
-            parser = Loader.loadParserForFile(self,'item',directory+'/'+file)
+            self.log.debug('FILE:'+file)
+            parser = Loader.loadParserForFile(self,'item',directory+os.sep+file)
             if parser != None:
                 self.data.append(parser.loadInClass(Item()))
     

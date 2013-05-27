@@ -33,8 +33,8 @@ class CreatureLoader(Loader):
         
         for file in filesList:
             self.log.debug(file)
-            if(os.path.isdir(directory+'/'+file) == False and os.access(directory+'/'+file, os.F_OK)):            
-                parser = Loader.loadParserForFile(self,'creature',directory+'/'+file)
+            if(os.path.isdir(directory+os.sep+file) == False and os.access(directory+os.sep+file, os.F_OK)):            
+                parser = Loader.loadParserForFile(self,'creature',directory+os.sep+file)
                 if parser != None:
                     creature = Creature(self.itemsLoader)
                     creature = parser.loadInClass(creature)

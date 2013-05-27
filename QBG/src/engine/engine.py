@@ -22,7 +22,7 @@ class Engine(object):
         
         for loader in self.loaders:
             loader.load(self.data)
-            print loader.__class__.__name__ + ' Finished'
+            self.log.info(loader.__class__.__name__ + ' Finished')
         print 'Run loaders Finished'
     
     
@@ -56,6 +56,7 @@ class Engine(object):
         self.tableTop.initialConnector.roomDealer = self.firstRoomDealer
         
         self.tableTop.addRoom(self.tableTop.initialConnector,self.firstRoomDealer)
+        
         self.renderObject.renderTabletop(self.tableTop)
         
         
