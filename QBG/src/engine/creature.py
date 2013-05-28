@@ -8,37 +8,12 @@ class Creature(object):
   '''
   classdocs
   '''
-  _type = ""
-  _name = ""
+
   
   TYPE_HERO = "hero"
   TYPE_MONSTER = "monster"
-  
-  """
-  all Stats
-  """
-  
-  _move = 0
-  _weapon_skill = 0
-  _ballistic_skill = 0
-  _strength = 0
-  _toughness = 0
-  _wounds = 0
-  _initiative = 0
-  _attacks = 0
-  _gold = 0
-  _armor = 0
-  _damage = 0
-  _extra_damage = 0
-  _extra_damage_hit = 0
-  _pinning = 6
-  _current_wounds = 0
-  
-  # Default battle level is 1
-  _battle_level = 1
-  
-  
-  _effects = []
+
+
 
   
   #def __init__(self, name, type,move=0, weapon_skill=0, ballistic_skill=0,strength=0,toughness=0,wounds=0,initiative=0,attacks=0,gold=0,armor=0,damage=0):
@@ -73,6 +48,36 @@ class Creature(object):
 #    self._gold = gold
 #    self._armor = armor
 #    self._damage = damage
+
+    self._type = ""
+    self._name = "" 
+    """
+    all Stats
+    """
+    
+    self._move = 0
+    self._weapon_skill = 0
+    self._ballistic_skill = 0
+    self._strength = 0
+    self._toughness = 0
+    self._wounds = 0
+    self._initiative = 0
+    self._attacks = 0
+    self._gold = 0
+    self._armor = 0
+    self._damage = 0
+    self._extra_damage = 0
+    self._extra_damage_hit = 0
+    self._pinning = 6
+    self._current_wounds = 0
+    
+    # Default battle level is 1
+    self._battle_level = 1
+    
+    
+    self._effects = []
+
+
   
   def setDict(self,dictData):
     self.log.debug(str(dictData))
@@ -84,7 +89,7 @@ class Creature(object):
     self._wounds = dictData['wounds']
     self._initiative = dictData['initiative']
     self._attacks = dictData['attacks']
-
+    self._battle_level = dictData['level']
           
           
   def melee_hit_roll(self, target):
