@@ -1,0 +1,20 @@
+{
+	"name":"Fighting Pit"
+    ,"subType" : "objective-room"
+    ,"unique" : true
+	,"definition" : [
+	 [  ["Deep"],  ["IO"],["IO"],  ["Deep"] ]
+	
+	,[ ["Deep"],  ["D"],["D"],  ["Deep"] ]
+    
+    ,[ ["Deep"],  ["D"],["D"],  ["Deep"]  ]
+    ,[ ["Deep"],  ["D"],["D"],  ["Deep"] ]
+    
+    ,[ ["Deep"],  ["Deep"],["Deep"],  ["Deep"]  ]
+    ,[ ["D"],  ["D"],["D"],  ["D"] ]
+    
+    ,[ ["D"],  ["D"],["D"],  ["D"]  ]
+    
+	,[ ["D"],["IO"],  ["IO"],["D"]   ]
+	]
+}

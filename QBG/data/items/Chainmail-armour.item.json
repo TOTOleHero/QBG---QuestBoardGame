@@ -1,0 +1,19 @@
+{
+
+    "name": "Chainmail Armour",
+    "basePurchasePrice": 500,
+    "stock": 4,
+    "gold": 150,
+    "type": "Armor",
+    "modifiers": [
+        {
+            "type": "armor",
+            "modifier": 2
+        },
+        {
+            "type": "move",
+            "modifier": -1
+        }
+    ],
+    "description":"+2 Toughness; -1 Movement"
+}

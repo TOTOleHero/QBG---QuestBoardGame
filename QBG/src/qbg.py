@@ -1,13 +1,15 @@
 #! /usr/bin/env python
 
-from engine.engine import Engine
-from engine.loaders.roomloader import RoomLoader
-from engine.loaders.tileloader import TileLoader
-from engine.loaders.itemloader import ItemLoader
-from engine.loaders.creatureloader import CreatureLoader
-from engine.loaders.tilefunctionloader import TileFunctionLoader
-from engine.renders.asciirender import AsciiRender
-from engine.tabletop import TileException
+from qbg.engine import Engine
+from qbg.game.space.zoneloader import ZoneLoader
+from qbg.game.space.tileloader import TileLoader
+from qbg.items.itemloader import ItemLoader
+from qbg.characters.characterloader import CharacterLoader
+from qbg.game.space.tilefunctionloader import TileFunctionLoader
+from qbg.renders.asciirender import AsciiRender
+from qbg.game.space.tabletop import TileException
+from qbg.game.event.eventloader import EventLoader
+
 import copy
 import os
 
@@ -23,47 +25,50 @@ Logger.configfiles.append(rootPath+os.sep+'conf'+os.sep+'log4py.conf')
 
 e = Engine()
 
+eventLoader             = EventLoader(rootPath+os.sep+'data'+os.sep+'events')
 tileLoader              = TileLoader(rootPath+os.sep+'data'+os.sep+'tiles')
 tileFunctionLoader      = TileFunctionLoader(rootPath+os.sep+'data'+os.sep+'tilesfunction')
-roomLoader              = RoomLoader(rootPath+os.sep+'data'+os.sep+'rooms',tileFunctionLoader)
+zoneLoader              = ZoneLoader(rootPath+os.sep+'data'+os.sep+'zones',tileFunctionLoader)
 itemLoader              = ItemLoader(rootPath+os.sep+'data'+os.sep+'items')
-creatureLoader          = CreatureLoader(rootPath+os.sep+'data'+os.sep+'creatures',itemLoader)
+characterLoader          = CharacterLoader(rootPath+os.sep+'data'+os.sep+'characters',itemLoader)
+
+e.addLoader(eventLoader)
 
 e.addLoader(itemLoader)
-e.addLoader(creatureLoader)
+e.addLoader(characterLoader)
 
 e.addLoader(tileLoader)
 e.addLoader(tileFunctionLoader)
-e.addLoader(roomLoader)
+e.addLoader(zoneLoader)
 
 
 
 e.load()
-for rooms in e.data['room'].itervalues():
+for zones in e.data['zone'].itervalues():
     index=0
-    for room in rooms:
-        print 'check '+str(index)+':'+room.name
-        room.checkGridSizes()
+    for zone in zones:
+        print 'check '+str(index)+':'+zone.name
+        zone.checkGridSizes()
         index += 1
         
 e.authorizeDungeonSubTypeCount('corridor',12)
-e.authorizeDungeonSubTypeCount('dungeon-room',4)
-e.authorizeDungeonSubTypeCount('objective-room',1)
+e.authorizeDungeonSubTypeCount('dungeon-zone',4)
+e.authorizeDungeonSubTypeCount('objective-zone',1)
 
 e.generateDongeon()
 #===============================================================================
-# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][1]))
-# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][1]))
-# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][0]))
-# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['dungeon-room'][0]))
-# e.generateDongeonArray.append(copy.deepcopy(e.data['room']['corridor'][1]))
+# e.generateDongeonArray.append(copy.deepcopy(e.data['zone']['corridor'][1]))
+# e.generateDongeonArray.append(copy.deepcopy(e.data['zone']['corridor'][1]))
+# e.generateDongeonArray.append(copy.deepcopy(e.data['zone']['corridor'][0]))
+# e.generateDongeonArray.append(copy.deepcopy(e.data['zone']['dungeon-zone'][0]))
+# e.generateDongeonArray.append(copy.deepcopy(e.data['zone']['corridor'][1]))
 #===============================================================================
 
 
 
 try:
     e.setRender(AsciiRender())
-except engine.tabletop.TileException :
+except qbg.tabletop.TileException :
     Print('no render')
 
 

@@ -1,0 +1,20 @@
+{
+    "name": "Long Bow",
+    "basePurchasePrice": 300,
+    "stock": null,
+    "gold": 40,
+    "type": "Weapon",
+    "ranged" : true,
+    "modifiers": [
+        
+    ],
+     "itemProfil":[
+        {
+            "type":"strength",
+            "value":1
+        }
+        
+ 
+     ],
+    "description":"Strength 1; as many shots per turn as Warrior has Attacks."
+}

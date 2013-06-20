@@ -1,0 +1,21 @@
+{
+
+    "name": "Rope",
+    "basePurchasePrice": 30,
+    "stock": 4,
+    "gold": 5,
+    "type": "Item",
+    "modifiers": [
+        
+    ],
+    "events":[
+
+        {
+            "event":"afterUse",
+            "action":"discard",
+            "condition":"(1D6 < 3)"
+        }
+
+    ],
+    "description":"Use to escape pit; after each use roll 1D6, on 1 or 2 the rope breaks and is discarded"
+}

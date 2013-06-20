@@ -1,0 +1,12 @@
+{
+    "name": "GreatAxe",
+    "basePurchasePrice": 200,
+    "stock": null,
+    "gold": 15,
+    "type": "Weapon",
+    "modifiers": [
+        
+    ],
+    "description" : ""
+            
+}

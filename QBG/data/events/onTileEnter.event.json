@@ -1,0 +1,7 @@
+{
+    "eventName": "onTileEnter"
+    ,"eventParameters": [
+        "tile",
+        "character"
+    ]
+}

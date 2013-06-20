@@ -1,0 +1,4 @@
+{
+    'name' : 'Idol'
+    ,'code' : 'Idol'
+}

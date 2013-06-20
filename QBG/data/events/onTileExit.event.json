@@ -1,0 +1,7 @@
+{
+    "eventName": "onTileExit"
+    ,"eventParameters": [
+        "tile",
+        "character"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Furs",
+    "basePurchasePrice": 300,
+    "stock": 4,
+    "gold": 50,
+    "type": "Armor",
+    "modifiers": [
+        {
+            "type": "armor",
+            "modifier": 1
+        }
+        
+    ],
+    "description" : ""
+}

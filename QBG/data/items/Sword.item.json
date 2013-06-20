@@ -1,0 +1,11 @@
+{
+    "name": "Sword",
+    "basePurchasePrice": 200,
+    "stock": null,
+    "gold": 15,
+    "type": "Weapon",
+    "modifiers": [
+        
+    ],
+    "description" : "Normal damage (1D6 + Warrior's Strength)."        
+}
