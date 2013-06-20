@@ -2,7 +2,9 @@ import re
 import os
 from log4py import Logger
 from qbg.config.loaders.loader import Loader
-from qbg.characters import *
+from qbg.characters.character import *
+from qbg.characters.hero import *
+from qbg.characters.monster import *
 
 
 class CharacterLoader(Loader):
